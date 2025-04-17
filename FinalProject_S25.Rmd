@@ -25,13 +25,16 @@ knitr::opts_chunk$set(echo = F)
 # the dates were reformatted for the affected rows, months and years replaced the missing values
 
 # Use the raw content URL instead of the repository page URL
-url <- "https://raw.githubusercontent.com/BotanicalAmy/Stats-Project/main/finalproject_hotelbooking_clean.csv"
-hotel_bookings <- read.csv(url)
+file_url <- "https://raw.githubusercontent.com/BotanicalAmy/Stats-Project/main/hotel_booking_cleaned.csv"
+hotel_bookings <- read.csv(file_url, header = TRUE)
 
 ```
 
 ```{r}
+# Create a new column GroupSize by adding Adults and Children
+hotel_bookings$`GroupSize` <- hotel_bookings$Adults + hotel_bookings$Children
 
+# Preview the data
 head(hotel_bookings)
 
 ```
@@ -59,12 +62,38 @@ head(hotel_bookings)
 
 *What is (are) possible explanatory and response variables?*
 
+```{r}
+# quantitative predictors
+
+
+```
+
+```{r}
+# categorical predictors
+
+```
+
 *Create a table here - it should include variable names and types*
+
+```{r}
+# add table
+
+```
 
 #  2. Detailed Exploratory Data Analysis (EDA)
 
 *Spend time investigating the data thoroughly and use this section to present figures that allow you to visualize the relationship of the response to different predictors.  Include descriptions of the figures that illustrate what you can learn from them.*
 
+```{r}
+# quantitative EDA
+
+
+```
+
+```{r}
+# categorical EDA
+
+```
 
 # 3. Statistical Analysis 
 
