@@ -19,6 +19,19 @@ library(emmeans)
 
 
 knitr::opts_chunk$set(echo = F)
+
+# URL to the raw CSV file on GitHub
+url <- "https://raw.githubusercontent.com/BotanicalAmy/Stats-Project/main/finalproject_hotelbooking.csv"
+
+# Load the data
+hotel_bookings <- read.csv(url)
+
+```
+
+```{r}
+
+head(hotel_bookings)
+
 ```
 
 # 1. Project Description
