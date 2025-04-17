@@ -23,15 +23,15 @@ knitr::opts_chunk$set(echo = F)
 # URL to the raw CSV file on GitHub
 # this clean version has a series of dates that with odd formatting and missing year and month values as a result
 # the dates were reformatted for the affected rows, months and years replaced the missing values
-url <- "https://github.com/BotanicalAmy/Stats-Project/blob/main/finalproject_hotelbooking_clean.csv"
 
-# Load the data
+# Use the raw content URL instead of the repository page URL
+url <- "https://raw.githubusercontent.com/BotanicalAmy/Stats-Project/main/finalproject_hotelbooking_clean.csv"
 hotel_bookings <- read.csv(url)
 
 ```
 
 ```{r}
-  
+
 head(hotel_bookings)
 
 ```
