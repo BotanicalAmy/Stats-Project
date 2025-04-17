@@ -1759,27 +1759,14 @@ Stathis</h4>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IEluY29tcGxldGUgZXhwcmVzc2lvbjogaWYoXCJEYXRlXCIgJWluJSBjb2xuYW1lcyhob3RlbF9ib29raW5ncykpIHtcbiAgIyBDb252ZXJ0IERhdGUgY29sdW1uIHRvIHByb3BlciBkYXRlIGZvcm1hdFxuICBob3RlbF9ib29raW5ncyREYXRlIDwtIGFzLkRhdGUoaG90ZWxfYm9va2luZ3MkRGF0ZSwgZm9ybWF0PVwiJVktJW0tJWRcIilcbiAgXG4gICMgQ29udmVydCBkYXRlIGZvcm1hdCBmcm9tIFwiJVktJW0tJWRcIiB0byBcIiVZLyVtLyVkXCJcbiAgaG90ZWxfYm9va2luZ3MkRGF0ZV9mb3JtYXR0ZWQgPC0gZm9ybWF0KGhvdGVsX2Jvb2tpbmdzJERhdGUsIFwiJVkvJW0vJWRcIilcbiAgXG4gICMgUmVwbGFjZSBvcmlnaW5hbCBEYXRlIGNvbHVtbiB3aXRoIHRoZSBuZXcgZm9ybWF0dGVkIHZlcnNpb25cbiAgaG90ZWxfYm9va2luZ3MkRGF0ZSA8LSBob3RlbF9ib29raW5ncyREYXRlX2Zvcm1hdHRlZFxuICBob3RlbF9ib29raW5ncyREYXRlX2Zvcm1hdHRlZCA8LSBOVUxMXG4gIFxuICAjIEV4dHJhY3QgWWVhciBhbmQgTW9udGggZnJvbSBEYXRlIGNvbHVtblxuICBob3RlbF9ib29raW5ncyRZZWFyX2Zyb21fZGF0ZSA8LSBsdWJyaWRhdGU6OnllYXIoYXMuRGF0ZShob3RlbF9ib29raW5ncyREYXRlLCBmb3JtYXQ9XCIlWS8lbS8lZFwiKSlcbiAgaG90ZWxfYm9va2luZ3MkTW9udGhfZnJvbV9kYXRlIDwtIGx1YnJpZGF0ZTo6bW9udGgoYXMuRGF0ZShob3RlbF9ib29raW5ncyREYXRlLCBmb3JtYXQ9XCIlWS8lbS8lZFwiKSlcbiAgXG4gICMgUmVwbGFjZSBOQSB2YWx1ZXMgaW4gWWVhciBhbmQgTW9udGggY29sdW1ucyB3aXRoIGV4dHJhY3RlZCB2YWx1ZXNcbiAgaWYoXCJZZWFyXCIgJWluJSBjb2xuYW1lcyhob3RlbF9ib29raW5ncykpIHtcbiAgICBob3RlbF9ib29raW5ncyRZZWFyIDwtIGlmZWxzZShpcy5uYShob3RlbF9ib29raW5ncyRZZWFyKSwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBob3RlbF9ib29raW5ncyRZZWFyX2Zyb21fZGF0ZSwgXG4gICAgICAgICAgICAgICAgICAgXG4ifQ== -->
-<pre><code>Error: Incomplete expression: if(&quot;Date&quot; %in% colnames(hotel_bookings)) {
-  # Convert Date column to proper date format
-  hotel_bookings$Date &lt;- as.Date(hotel_bookings$Date, format=&quot;%Y-%m-%d&quot;)
-  
-  # Convert date format from &quot;%Y-%m-%d&quot; to &quot;%Y/%m/%d&quot;
-  hotel_bookings$Date_formatted &lt;- format(hotel_bookings$Date, &quot;%Y/%m/%d&quot;)
-  
-  # Replace original Date column with the new formatted version
-  hotel_bookings$Date &lt;- hotel_bookings$Date_formatted
-  hotel_bookings$Date_formatted &lt;- NULL
-  
-  # Extract Year and Month from Date column
-  hotel_bookings$Year_from_date &lt;- lubridate::year(as.Date(hotel_bookings$Date, format=&quot;%Y/%m/%d&quot;))
-  hotel_bookings$Month_from_date &lt;- lubridate::month(as.Date(hotel_bookings$Date, format=&quot;%Y/%m/%d&quot;))
-  
-  # Replace NA values in Year and Month columns with extracted values
-  if(&quot;Year&quot; %in% colnames(hotel_bookings)) {
-    hotel_bookings$Year &lt;- ifelse(is.na(hotel_bookings$Year), 
-                                 hotel_bookings$Year_from_date, 
-                   </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiXG48IS0tIHJuYi1mcmFtZS1iZWdpbiBleUp0WlhSaFpHRjBZU0k2ZXlKamJHRnpjMlZ6SWpwYkltUmhkR0V1Wm5KaGJXVWlYU3dpYm5KdmR5STZOaXdpYm1OdmJDSTZNU3dpYzNWdGJXRnllU0k2ZXlKRVpYTmpjbWx3ZEdsdmJpSTZXeUprWmlCYk5pRERseUF4WFNKZGZYMHNJbkprWmlJNklrZzBjMGxCUVVGQlFVRkJRVUpzTVZNd1ZUWkVUVUpUT1hkTlEwMWFUSEJyVURoQlVIUk5ibWxwZVdKNWIwVTFaazVYV1cwNE4wZFBRMjFVVVV4eFYyOWxMMUJNY0RkbGMycFdkRXBUUlRsUU4zcHVZekE0ZGt4WmJsZGFjbXhKUVdsSFFUQkRhVWRMUlZWTU9IVnVkMnRXZDBKSlFVRlJkMmR5UmxwMk4wWnZUbWhCUVZVemQxUmxlRVJtVmt4d2REZEhZV05hVVRCVVdtTTJSa3BqU1hOeksyZDFlWGR4YlVkV2JreFNhWEpUZVc5TWJuSk9abmxSUkZveFYxZHRhVXM1TjNsbVRVRklkVzFDY1ZreGEwUnlaRTkwWkZkTWVpdFpOSGRWWW1STk9EUk1aMVYyU1hVM00yRmtOWFV4VWxGV1QweEVaV3hHZDFKVmFVeE9RM0UxTUdaT2JtRmhUVUpYZERWYWVFMDJZM0p4YVdSUVJqQjJNM2czWm5GQmJVc3ZWa1ZaZVZjdmNVSk9UMnBQT0ZCRVJTOXBkVFk0WWpGMmJuVnhWMjFXWm1scVZUUXlOM1pUWXpkclZuUmtVMjlEYVdOSVVuaFFlRWxJZVdsSmRHVnRSVFJMYzNFMU5ucElNM1JJVldSaVZWcHdkakpxYTBkMGRVaEJWMnN2SzJWa1RrWXJUM1pPVDNWSGFYaEZkREJqVW5JeWVuUXphMjgwU2k5WGJtbFBPWHBHWTBJNU1uRlhiV2xZUlRsdFQyRnhiVnByTmxRMFMzcG9iVk5CTnpkUWVXaDJZMWRYVWtGblFVRWlmUT09IC0tPlxuXG48ZGl2IGRhdGEtcGFnZWR0YWJsZT1cImZhbHNlXCI+XG4gIDxzY3JpcHQgZGF0YS1wYWdlZHRhYmxlLXNvdXJjZSB0eXBlPVwiYXBwbGljYXRpb24vanNvblwiPlxue1wiY29sdW1uc1wiOlt7XCJsYWJlbFwiOltcIlwiXSxcIm5hbWVcIjpbXCJfcm5fXCJdLFwidHlwZVwiOltcIlwiXSxcImFsaWduXCI6W1wibGVmdFwiXX0se1wibGFiZWxcIjpbXCJYLi5ET0NUWVBFLmh0bWwuXCJdLFwibmFtZVwiOlsxXSxcInR5cGVcIjpbXCJjaHJcIl0sXCJhbGlnblwiOltcImxlZnRcIl19XSxcImRhdGFcIjpbe1wiMVwiOlwiPGh0bWxcIixcIl9ybl9cIjpcIjFcIn0se1wiMVwiOlwibGFuZz1lblwiLFwiX3JuX1wiOlwiMlwifSx7XCIxXCI6XCJcIixcIl9ybl9cIjpcIjNcIn0se1wiMVwiOlwiZGF0YS1jb2xvci1tb2RlPWF1dG8gZGF0YS1saWdodC10aGVtZT1saWdodCBkYXRhLWRhcmstdGhlbWU9ZGFya1wiLFwiX3JuX1wiOlwiNFwifSx7XCIxXCI6XCJkYXRhLWExMXktYW5pbWF0ZWQtaW1hZ2VzPXN5c3RlbSBkYXRhLWExMXktbGluay11bmRlcmxpbmVzPXRydWVcIixcIl9ybl9cIjpcIjVcIn0se1wiMVwiOlwiXCIsXCJfcm5fXCI6XCI2XCJ9XSxcIm9wdGlvbnNcIjp7XCJjb2x1bW5zXCI6e1wibWluXCI6e30sXCJtYXhcIjpbMTBdLFwidG90YWxcIjpbMV19LFwicm93c1wiOntcIm1pblwiOlsxMF0sXCJtYXhcIjpbMTBdLFwidG90YWxcIjpbNl19LFwicGFnZXNcIjp7fX19XG4gIDxcL3NjcmlwdD5cbjxcL2Rpdj5cblxuPCEtLSBybmItZnJhbWUtZW5kIC0tPlxuIn0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MSwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbNiDDlyAxXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVMwVTZETUJTOXdNQ01aTHBrUDhBUHRNbmlpeWJ5b0U1Zk5XWW04N0dPQ21UUUxxV29lL1BMcDdlc2pWdEpTRTlQN3puYzA4dkxZbldacmxJQWlHQTBDaUdLRVVMOHVud2tWd0JJQUFRd2dyRlp2N0ZvTmhBQVUzd1RleERmVkxwdDdHYWNaUTBUWmM2RkpjSXNzK2d1eXdxbUdWbkxSaXJTeW9MbnJOZnlRRFoxV1dtaUs5N3lmTUFIdW1CcVkxa0RyZE90ZFdMeitZNHdVYmRNODRMZ1V2SXU3M2FkNXUxUlFWT0xEZWxGd1JVaUxOQ3E1MGZObmFhTUJXdDVaeE02Y3JxaWRQRjB2M3g3ZnFBbUsvVkVZeVcvcUJOT2pPOFBERS9pdTY4YjF2bnVxV21WZmlqVTQyN3ZTYzdrVnRkU29DaWNIUnhQeElIeWlJdGVtRTRLc3E1NnpIM3RIVWRiVVpwdjJqa0d0dUhBV2svK2VkTkYrT3ZOT3VHaXhFdDBjUnIyenQza280Si9XbmlPOXpGY0I5MnFXbWlYRTltT2FxbVprNlQ0S3pobVNBNzdQeWh2Y1dXUkFnQUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X..DOCTYPE.html."],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"<html","_rn_":"1"},{"1":"lang=en","_rn_":"2"},{"1":"","_rn_":"3"},{"1":"data-color-mode=auto data-light-theme=light data-dark-theme=dark","_rn_":"4"},{"1":"data-a11y-animated-images=system data-a11y-link-underlines=true","_rn_":"5"},{"1":"","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
