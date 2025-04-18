@@ -31,8 +31,11 @@ hotel_bookings <- read.csv(file_url, header = TRUE)
 ```
 
 ```{r}
-# Create a new column GroupSize by adding Adults and Children
-hotel_bookings$`GroupSize` <- hotel_bookings$Adults + hotel_bookings$Children
+# new column GroupSize by adding Adults and Children
+hotel_bookings$GroupSize <- hotel_bookings$Adults + hotel_bookings$Children
+
+# new column StayLength by adding weekend and weeknights
+hotel_bookings$StayLength <- hotel_bookings$Weekends + hotel_bookings$Weeknights
 
 # Preview the data
 head(hotel_bookings)
@@ -43,11 +46,19 @@ head(hotel_bookings)
 
 *Should be in paragraph form (not bullets).  Written for a 3rd party client that may not have a strong statistical background. As part of your description, consider the following:*
 
+Gold Mine Resorts is looking to understand the predictors for guests who cancel their reservations.The industry average for cancellation rates is twenty percent; however Gold Mine Resorts experienced a 32.8% cancellation rate for reservations between 2015 and 2018. Cancelled reservations represent a total of $4.3 million dollars in lost revenue for this time frame.
+
 - *Description of the dataset*
+
+The dataset includes 36,285 rows of booking data, spanning the course of four years (2015-2018). Data collected includes the number of guests (adult and children), the count of weekend and weeknight stays, guest upgrades (parking, meal plans, room types and count of special requests), booking details (price and reservation method), the date of stay, and whether or not the guest cancelled the reservation.
+
+The status column (cancelled verses not cancelled), is the response variable of interest in this analysis.
+
 - *Goal of study*
 
 ## 1.1 Research Objectives
 
+The goal of this analysis is to understand the best predictors for guest cancellations in order to develop company policy to decrease the cancellation rate. Lowering the percent cancellation rate to 20% represents a revenue increase of approximately $2 million dollars over four years. 
 
 *What are the overarching research objectives that the study is targeting? (not just a restatement of the original research objectives)*
 
@@ -61,6 +72,37 @@ head(hotel_bookings)
 ## 1.2 Variables
 
 *What is (are) possible explanatory and response variables?*
+
+```{r}
+
+# Compare means of each quantitative variable between canceled and not canceled groups
+group_comparison <- hotel_bookings %>%
+  group_by(Status) %>%
+  summarize(
+    Mean_LeadTime = mean(LeadTime, na.rm = TRUE),
+    Mean_AvgPrice = mean(AvgPrice, na.rm = TRUE),
+    Mean_GroupSize = mean(GroupSize, na.rm = TRUE),
+    Mean_StayLength = mean(StayLength, na.rm = TRUE)
+  )
+
+print(group_comparison)
+
+hotel_long <- hotel_bookings %>%
+  select(Status, LeadTime, AvgPrice, GroupSize, StayLength) %>%
+  pivot_longer(cols = c(LeadTime, AvgPrice, GroupSize, StayLength),
+               names_to = "Variable",
+               values_to = "Value")
+
+# faceted boxplots for quantitative variables
+ggplot(hotel_long, aes(x = Status, y = Value, fill = Status)) +
+  geom_boxplot() +
+  facet_wrap(~ Variable, scales = "free_y") +
+  scale_fill_manual(values = c("Canceled" = "#FF6B6B", "Not_Canceled" = "#4ECDC4")) +
+  labs(title = "Comparison of quantitative variables by cancellation status") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
 
 ```{r}
 # quantitative predictors
