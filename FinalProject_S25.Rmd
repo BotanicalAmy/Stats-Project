@@ -172,8 +172,9 @@ gf_bar(  ~RoomType ,  fill=~Status, data = hotel_bookings )
 gf_bar(  ~Meal ,  fill=~Status, data = hotel_bookings )
 gf_bar(  ~Market ,  fill=~Status, data = hotel_bookings )
 gf_bar(  ~Parking ,  fill=~Status, data = hotel_bookings )
-gf_bar(  ~Month ,  fill=~Status, data = hotel_bookings )
+gf_bar(~Month, fill=~Status, data = hotel_bookings)
 gf_bar(  ~Requests ,  fill=~Status, data = hotel_bookings )
+gf_bar(  ~HasChildren, fill=~Status, data = hotel_bookings)
 
 
 hotel_bookings %>%
