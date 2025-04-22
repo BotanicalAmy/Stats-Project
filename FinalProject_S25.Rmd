@@ -16,6 +16,9 @@ library(tidyverse)
 library(mosaic)
 library(ggformula)
 library(emmeans)
+library(knitr)
+library(kableExtra)
+library(dplyr)
 
 
 knitr::opts_chunk$set(echo = F)
@@ -25,7 +28,7 @@ knitr::opts_chunk$set(echo = F)
 # the dates were reformatted for the affected rows, months and years replaced the missing values
 
 # Use the raw content URL instead of the repository page URL
-file_url <- "https://raw.githubusercontent.com/BotanicalAmy/Stats-Project/main/hotel_booking_cleaned.csv"
+file_url <- "https://raw.githubusercontent.com/BotanicalAmy/Stats-Project/main/hotel_booking_clean.csv"
 hotel_bookings <- read.csv(file_url, header = TRUE)
 
 ```
@@ -41,7 +44,7 @@ hotel_bookings$StayLength <- hotel_bookings$Weekends + hotel_bookings$Weeknights
 hotel_bookings$HasChildren <- ifelse(hotel_bookings$Children > 0, 1, 0)
 
 # Preview the data
- head(hotel_bookings)
+# head(hotel_bookings)
 
 ```
 
@@ -67,9 +70,15 @@ The goal of this analysis is to understand the best predictors for guest cancell
 
 **Objective 1:**  
 
+The first objective will be to explore and define the most important quantitative variable for predicting whether a customer will cancel their reservation.
+
 **Objective 2:**
 
+The second objective will be to explore and define the most important categorical variable for predicting whether a customer will cancel their reservation.
+
 **Objective 3:**
+
+The final goal of our statistical analysis will combine our understanding of quantitative and categorical variables in order to create a combined statistical model to predict the customers who are most likely to cancel their reservations.
 
 
 ## 1.2 Variables
@@ -146,7 +155,17 @@ group_comparison <- hotel_bookings %>%
     Mean_StayLength = mean(StayLength, na.rm = TRUE)
   )
 
-print(group_comparison)
+# Round numeric columns to 3 decimal places
+group_comparison_formatted <- group_comparison %>%
+  mutate(across(where(is.numeric), ~round(., 3)))
+
+# Create pretty kable table
+kable(group_comparison_formatted, caption = "Quantitative Explanatory Variables") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE) %>%
+  column_spec(1, bold = TRUE) %>%
+  row_spec(0, bold = TRUE, background = "#E8E8E8")
+
 
 hotel_long <- hotel_bookings %>%
   select(Status, LeadTime, AvgPrice, GroupSize, StayLength) %>%
@@ -160,59 +179,192 @@ ggplot(hotel_long, aes(x = Status, y = Value, fill = Status)) +
   facet_wrap(~ Variable, scales = "free_y") +
   scale_fill_manual(values = c("Canceled" = "#FF6B6B", "Not_Canceled" = "#4ECDC4")) +
   labs(title = "Comparison of quantitative variables by cancellation status") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme_minimal() 
 
 ```
 
 
-```{r}
+```{r fig.width=6, fig.height=5}
 # categorical EDA
-gf_bar(  ~RoomType ,  fill=~Status, data = hotel_bookings )
-gf_bar(  ~Meal ,  fill=~Status, data = hotel_bookings )
-gf_bar(  ~Market ,  fill=~Status, data = hotel_bookings )
-gf_bar(  ~Parking ,  fill=~Status, data = hotel_bookings )
-gf_bar(~Month, fill=~Status, data = hotel_bookings)
-gf_bar(  ~Requests ,  fill=~Status, data = hotel_bookings )
-gf_bar(  ~HasChildren, fill=~Status, data = hotel_bookings)
+# Create a bar chart with white background and title
+gf_bar(~RoomType, fill=~Status, data = hotel_bookings) %>%
+  gf_labs(
+    title = "Cancellation by Room Type",
+    x = "Room Type",
+    y = "Count"
+  ) %>%
+  gf_refine(
+    scale_fill_manual(values = c("Canceled" = "#FF6B6B", "Not_Canceled" = "#4ECDC4"))
+  ) %>%
+  gf_theme(
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.position = "bottom"
+    )
+  )
 
+```
 
-hotel_bookings %>%
-  group_by(RoomType, Status) %>%
-  summarise(count = n()) %>%
-  group_by(RoomType) %>%
-  mutate(proportion = count / sum(count))
+```{r fig.width=7, fig.height=5}
 
-hotel_bookings %>%
-  group_by(Meal, Status) %>%
-  summarise(count = n()) %>%
-  group_by(Meal) %>%
-  mutate(proportion = count / sum(count))
+gf_bar(~Meal, fill=~Status, data = hotel_bookings) %>%
+  gf_labs(
+    title = "Cancellation by Meal Type",
+    x = "Meal Type",
+    y = "Count"
+  ) %>%
+  gf_refine(
+    scale_fill_manual(values = c("Canceled" = "#FF6B6B", "Not_Canceled" = "#4ECDC4"))
+  ) %>%
+  gf_theme(
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+      legend.position = "bottom"
+    )
+  )
 
-hotel_bookings %>%
-  group_by(Market, Status) %>%
-  summarise(count = n()) %>%
-  group_by(Market) %>%
-  mutate(proportion = count / sum(count))
+gf_bar(~Market, fill=~Status, data = hotel_bookings) %>%
+  gf_labs(
+    title = "Cancellation by Market Segment",
+    x = "Market Segment",
+    y = "Count"
+  ) %>%
+  gf_refine(
+    scale_fill_manual(values = c("Canceled" = "#FF6B6B", "Not_Canceled" = "#4ECDC4"))
+  ) %>%
+  gf_theme(
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+      legend.position = "bottom"
+    )
+  )
 
-hotel_bookings %>%
-  group_by(Parking, Status) %>%
-  summarise(count = n()) %>%
-  group_by(Parking) %>%
-  mutate(proportion = count / sum(count))
+```
+```{r fig.width=8, fig.height=5}
+# abbreviated month names in chronological order
+month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 
-hotel_bookings %>%
-  group_by(Month, Status) %>%
-  summarise(count = n()) %>%
-  group_by(Month) %>%
-  mutate(proportion = count / sum(count))
+# Convert Month to factor with levels in chronological order
+hotel_bookings$Month <- factor(hotel_bookings$Month, levels = month_order)
 
+# Create the bar chart with chronologically ordered months
+gf_bar(~Month, fill=~Status, data = hotel_bookings) %>%
+  gf_labs(
+    title = "Cancellations by Month",
+    x = "Month",
+    y = "Count"
+  ) %>%
+  gf_refine(
+    scale_fill_manual(values = c("Canceled" = "#FF6B6B", "Not_Canceled" = "#4ECDC4"))
+  ) %>%
+  gf_theme(
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+      legend.position = "bottom"
+    )
+  )
 
-hotel_bookings %>%
-  group_by(Requests, Status) %>%
-  summarise(count = n()) %>%
-  group_by(Requests) %>%
-  mutate(proportion = count / sum(count))
+gf_bar(~Requests, fill=~Status, data = hotel_bookings) %>%
+  gf_labs(
+    title = "Cancellations by Request Count",
+    x = "Number of Special Requests",
+    y = "Count"
+  ) %>%
+  gf_refine(
+    scale_fill_manual(values = c("Canceled" = "#FF6B6B", "Not_Canceled" = "#4ECDC4"))
+  ) %>%
+  gf_theme(
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+      legend.position = "bottom"
+    )
+  )
+```
+```{r fig.width=6, fig.height=5}
+gf_bar(~HasChildren, fill=~Status, data = hotel_bookings) %>%
+  gf_labs(
+    title = "Cancellation by HasChildren",
+    x = "Has Children (0 = No, 1 = Yes)",
+    y = "Count"
+  ) %>%
+  gf_refine(
+    scale_fill_manual(values = c("Canceled" = "#FF6B6B", "Not_Canceled" = "#4ECDC4"))
+  ) %>%
+  gf_theme(
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+      legend.position = "bottom"
+    )
+  )
+
+gf_bar(~Parking, fill=~Status, data = hotel_bookings) %>%
+  gf_labs(
+    title = "Cancellation by Parking Option",
+    x = "Parking",
+    y = "Count"
+  ) %>%
+  gf_refine(
+    scale_fill_manual(values = c("Canceled" = "#FF6B6B", "Not_Canceled" = "#4ECDC4"))
+  ) %>%
+  gf_theme(
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.position = "bottom"
+    )
+  )
+```
+
+```{r}
+# Create a function to generate proportion tables
+create_prop_table <- function(data, group_var) {
+  group_var <- enquo(group_var)
+  
+  data %>%
+    group_by(!!group_var, Status) %>%
+    summarise(count = n(), .groups = "drop") %>%
+    group_by(!!group_var) %>%
+    mutate(proportion = count / sum(count))
+}
+
+# Now use the function with each variable
+room_type_table <- create_prop_table(hotel_bookings, RoomType)
+meal_table <- create_prop_table(hotel_bookings, Meal)
+market_table <- create_prop_table(hotel_bookings, Market)
+parking_table <- create_prop_table(hotel_bookings, Parking)
+month_table <- create_prop_table(hotel_bookings, Month)
+requests_table <- create_prop_table(hotel_bookings, Requests)
+children_table <- create_prop_table(hotel_bookings, HasChildren)
+
+# Function to create a nicely formatted kable table with rounded proportions
+print_pretty_kable <- function(table_data, title) {
+  table_data <- table_data %>%
+    mutate(proportion = round(proportion, 3))
+  
+  kable(table_data, caption = title) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = FALSE) %>%
+    column_spec(1, bold = TRUE) %>%
+    row_spec(0, bold = TRUE, background = "#E8E8E8")
+}
+
+# Print each table with nice formatting
+print_pretty_kable(room_type_table, "Room Type")
+print_pretty_kable(meal_table, "Meal Option")
+print_pretty_kable(market_table, "Market")
+print_pretty_kable(parking_table, "Parking")
+print_pretty_kable(month_table, "Month")
+print_pretty_kable(requests_table, "Special Requests")
+print_pretty_kable(children_table, "Has Children")
 
 ```
 
@@ -326,15 +478,10 @@ exp(confint.default(leadtime_model))
 
 
 ```{r}
-# quantitative predictors
 
 
 ```
 
-```{r}
-# categorical predictors
-
-```
 
 *Create a table here - it should include variable names and types*
 
