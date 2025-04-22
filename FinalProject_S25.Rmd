@@ -119,8 +119,19 @@ ggplot(hotel_long, aes(x = Status, y = Value, fill = Status)) +
 
 ```{r}
 # add table
+price_model <- glm(factor(Status) ~ AvgPrice, family = binomial(link = "logit"), data = hotel_bookings)
+summary(price_model)
 
+leadtime_model <- glm(factor(Status) ~ LeadTime, family = binomial(link = "logit"), data = hotel_bookings)
+summary(leadtime_model)
+
+staylength_model <- glm(factor(Status) ~ StayLength, family = binomial(link = "logit"), data = hotel_bookings)
+summary(staylength_model)
+
+groupsize_model <- glm(factor(Status) ~ GroupSize, family = binomial(link = "logit"), data = hotel_bookings)
+summary(groupsize_model)
 ```
+
 
 #  2. Detailed Exploratory Data Analysis (EDA)
 
@@ -129,6 +140,20 @@ ggplot(hotel_long, aes(x = Status, y = Value, fill = Status)) +
 ```{r}
 # quantitative EDA
 
+#ASSESS
+#converts status to binary where Canceled = 1 and Not_Canceled = 0, checking for linearity
+hotel_bookings$Status_binary <- ifelse(hotel_bookings$Status == "Canceled", 1, 0)
+emplogitplot1(Status_binary ~ LeadTime, data = hotel_bookings, ngroups = "all")
+plot(leadtime_model, which = 1)
+
+#USE
+summary(leadtime_model)
+
+#gets the confidence interval, which does not include 0 therefore valid
+confint.default(leadtime_model)
+#gets the CI on the odds ratio scale, for every 1 unit increase in LeadTime, the odds of cancellation
+#(vs. non-cancellation) multiply by 0.9880 to 0.9881 w/95% confidence
+exp(confint.default(leadtime_model))
 
 ```
 
