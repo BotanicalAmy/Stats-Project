@@ -379,6 +379,30 @@ print_pretty_kable(children_table, "Has Children")
 
 ## 3.1 Objective 1
 
+Model for lead time:
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  1.8046260  0.0194124   92.96   <2e-16 ***
+LeadTime    -0.0117484  0.0001593  -73.73   <2e-16 ***
+
+
+Logit function for Status using LeadTime:
+$$\widehat{log(\frac{\pi}{1-\pi})} = 1.8046260 - 0.0117484(LeadTime)$$
+
+$$odds(Status) = e^{1.8046260 - 0.0117484(LeadTime)} $$
+
+Probability function for Status using LeadTime:
+
+$$p(Status) = \widehat \pi = \frac{e^{1.8046260 - 0.0117484(LeadTime)}}{1-e^{1.8046260 - 0.0117484(LeadTime)}}$$
+
+$$odds \space ratio = e^{\widehat \beta_1} = e^{-0.0117484} = 0.988324$$ 
+For every 1 day increase of LeadTime, the predicted odds of not cancelling the hotel booking decreases by a factor of 0.988. To further Gold Mine Resorts understanding of these statistics, Visuals of the probabilities and odds of cancellation are included below.
+
+$$H_0: \beta_1 = 0, H_a: \beta_1 \neq 0$$
+With a p-value < 2e^-16, we have enough evidence to reject the null hypothesis in favor of the alternative. LeadTime is useful for predicting hotel cancellations.
+
+
+
 ```{r}
 
 # quantitative predictors
@@ -408,6 +432,113 @@ summary(leadtime_model)
 
 ```
 
+```{r}
+
+# Parameters from your logistic regression model
+intercept <- 1.8046260
+lead_time_coef <- -0.0117484
+
+# Function to calculate probability of cancellation
+cancellation_probability <- function(lead_time) {
+  logit <- intercept + (lead_time_coef * lead_time)
+  probability <- 1 / (1 + exp(-logit))
+  return(probability)
+}
+
+# Function to calculate odds of cancellation
+cancellation_odds <- function(lead_time) {
+  prob <- cancellation_probability(lead_time)
+  odds <- prob / (1 - prob)
+  return(odds)
+}
+
+# Create a sequence of lead times from 0 to 365 days
+lead_times <- seq(0, 365, by = 1)
+
+# Calculate probabilities and odds for each lead time
+probabilities <- sapply(lead_times, cancellation_probability)
+odds <- sapply(lead_times, cancellation_odds)
+
+# Create a data frame for plotting
+plot_data <- data.frame(
+  LeadTime = lead_times,
+  Probability = probabilities,
+  Odds = odds
+)
+
+# Create visualization
+# Set up a 2x1 plotting layout
+par(mfrow = c(2, 1), mar = c(4, 4, 2, 2))
+
+# Plot 1: Probability vs Lead Time
+plot(plot_data$LeadTime, plot_data$Probability, 
+     type = "l", col = "royalblue", lwd = 2,
+     xlab = "Lead Time (days)", ylab = "Probability of Cancellation",
+     main = "Probability of Cancellation vs Lead Time", 
+     ylim = c(0, 1))
+grid()
+
+# Add reference points
+reference_points <- c(0, 30, 60, 90, 180, 365)
+reference_probs <- sapply(reference_points, cancellation_probability)
+points(reference_points, reference_probs, pch = 19, col = "#FF6B6B")
+
+# Add labels for probability reference points
+text(reference_points, reference_probs, 
+     labels = paste0(round(reference_probs*100, 1), "%"), 
+     pos = 3, col = "gray11")
+
+# Plot 2: Odds vs Lead Time
+plot(plot_data$LeadTime, plot_data$Odds, 
+     type = "l", col = "midnightblue", lwd = 2,
+     xlab = "Lead Time (days)", ylab = "Odds of Cancellation",
+     main = "Odds of Cancellation vs Lead Time",
+     ylim = c(0, 6))
+grid()
+
+# Add reference points for odds
+reference_odds <- sapply(reference_points, cancellation_odds)
+points(reference_points, reference_odds, pch = 19, col = "#FF6B6B")
+
+# Add labels for odds reference points
+text(reference_points, reference_odds, 
+     labels = paste0(round(reference_odds, 2)), 
+     pos = 3, col = "gray11")
+
+# Reset plotting parameters
+par(mfrow = c(1, 1))
+
+# Additional information: Compare probability and odds changes
+reference_table <- data.frame(
+  LeadTime = reference_points,
+  Probability = round(reference_probs, 4),
+  ProbabilityPercentage = paste0(round(reference_probs*100, 1), "%"),
+  Odds = round(reference_odds, 4)
+)
+
+# Print reference table
+# print(reference_table)
+
+# Calculate and display odds ratios for different intervals
+base_odds <- cancellation_odds(0)
+odds_ratios <- sapply(reference_points[-1], function(lt) {
+  cancellation_odds(lt) / base_odds
+})
+
+cat("\nPercentage change in odds from Lead Time = 0:\n")
+for (i in 1:length(odds_ratios)) {
+  pct_change <- (odds_ratios[i] - 1) * 100
+  cat(sprintf("Lead Time = %d days: %.1f%% change in odds\n", 
+              reference_points[i+1], pct_change))
+}
+
+# Calculate and display odds ratio for one-day change
+one_day_odds_ratio <- exp(lead_time_coef)
+cat(sprintf("\nOdds ratio for one-day increase in lead time: %.4f\n", one_day_odds_ratio))
+cat(sprintf("This corresponds to a %.2f%% decrease in odds per day\n", 
+            (1 - one_day_odds_ratio) * 100))
+
+```
 
 ## 3.2 Objective 2
 
@@ -471,18 +602,13 @@ exp(confint.default(leadtime_model))
 
 *(all research objectives should be addressed, in the same order)*
 
+Add in note on years, 2018 had a 36.7% cancellation rate, 2017 had a 14.8% cancellation rate
+4.57 times as many bookings in 2018
+
 # 5. Appendix 
 
 *This section should include the code and output for the models used to answer the research objectives.*
 
-
-```{r}
-
-
-```
-
-
-*Create a table here - it should include variable names and types*
 
 ```{r}
 # add table
@@ -498,65 +624,3 @@ summary(staylength_model)
 groupsize_model <- glm(factor(Status) ~ GroupSize, family = binomial(link = "logit"), data = hotel_bookings)
 summary(groupsize_model)
 ```
-
-
-#  2. Detailed Exploratory Data Analysis (EDA)
-
-*Spend time investigating the data thoroughly and use this section to present figures that allow you to visualize the relationship of the response to different predictors.  Include descriptions of the figures that illustrate what you can learn from them.*
-
-```{r}
-# quantitative EDA
-
-#ASSESS
-#converts status to binary where Canceled = 1 and Not_Canceled = 0, checking for linearity
-hotel_bookings$Status_binary <- ifelse(hotel_bookings$Status == "Canceled", 1, 0)
-emplogitplot1(Status_binary ~ LeadTime, data = hotel_bookings, ngroups = "all")
-plot(leadtime_model, which = 1)
-
-#USE
-summary(leadtime_model)
-
-#gets the confidence interval, which does not include 0 therefore valid
-confint.default(leadtime_model)
-#gets the CI on the odds ratio scale, for every 1 unit increase in LeadTime, the odds of cancellation
-#(vs. non-cancellation) multiply by 0.9880 to 0.9881 w/95% confidence
-exp(confint.default(leadtime_model))
-
-```
-
-```{r}
-# categorical EDA
-
-```
-
-# 3. Statistical Analysis 
-
-*Describe the statistical analysis that you used to answer Research Objectives 1-3. Each analysis should be labeled for the appropriate research objective. This section should summarize all relevant analyses that lead to your final conclusions/decisions/recommendations. Be sure to include:*
-
-- *Model Assumptions & how checked/verified*
-- *Interpretation of relevant estimates/statistics/p-values IN CONTEXT*
-- *Any data manipulation to create new variables* 
-
-*You should not include your code. However, I would like to see the code for final models that you are using to answer the research objectives in the appendix.* 
-
-## 3.1 Objective 1
-
-## 3.2 Objective 2
-
-## 3.3 Objective 3
-
-# 4. Conclusions 
-
-*Succinct response to each question laid out in 1.1.  This a much shorter version of section 3, and focuses on conclusions rather than the analyses.*
-
-**Objective 1:**  
-
-**Objective 2:**
-
-**Objective 3:**
-
-*(all research objectives should be addressed, in the same order)*
-
-# 5. Appendix 
-
-*This section should include the code and output for the models used to answer the research objectives.*
