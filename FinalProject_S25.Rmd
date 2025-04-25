@@ -52,7 +52,7 @@ hotel_bookings$HasRequests <- ifelse(hotel_bookings$Requests > 0, 1, 0)
 hotel_bookings$Online <- ifelse(hotel_bookings$Market == "Online", 1, 0)
 
 # Preview the data
-head(hotel_bookings)
+# head(hotel_bookings)
 
 ```
 
@@ -836,7 +836,7 @@ For each additional day in lead time, the predicted odds of not cancelling decre
 
 $$odds \space ratio_{AvgPrice} = e^{-0.0145549} = 0.985$$ 
 
-For each $1 increase in average price, the predicted odds of not cancelling decrease by a factor of 0.985, holding all other variables constant. 
+For each \$1 increase in average price, the predicted odds of not cancelling decrease by a factor of 0.985, holding all other variables constant. 
 
 $$odds \space ratio_{StayTime} = e^{-0.0643062} = 0.938$$ 
 
@@ -864,7 +864,7 @@ Holding all other variables constant, when Gold Mine Resorts has an online booki
 
 $$odds \space ratio_{Month(Feb-Nov)} \approx e^{-2.28} = 0.102$$
 
-Holding all other variables constant, when there is a booking made between February to November (all \beta's are relatively similar in range) the predicted odds of not cancelling decrease by a factor of 0.102 when compared to bookings made in January (baseline). Each individual month is statistically significant in predicting Status with p-values <2e-16.
+Holding all other variables constant, when there is a booking made between February to November (all $\beta$'s are relatively similar in range) the predicted odds of not cancelling decrease by a factor of 0.102 when compared to bookings made in January (baseline). Each individual month is statistically significant in predicting Status with p-values <2e-16.
 
 $$odds \space ratio_{Month(Dec)} \approx e^{-0.0643} = 0.55$$ 
 
