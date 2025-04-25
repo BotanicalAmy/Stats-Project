@@ -48,8 +48,11 @@ hotel_bookings$HasChildren <- ifelse(hotel_bookings$Children > 0, 1, 0)
 # Add HasRequest column
 hotel_bookings$HasRequests <- ifelse(hotel_bookings$Requests > 0, 1, 0)
 
+# Add Online column
+hotel_bookings$Online <- ifelse(hotel_bookings$Market == "Online", 1, 0)
+
 # Preview the data
-# head(hotel_bookings)
+head(hotel_bookings)
 
 ```
 
@@ -63,7 +66,7 @@ Gold Mine Resorts is looking to understand the predictors for guests who cancel 
 
 The dataset includes 36,285 rows of booking data, spanning the course of four years (2015-2018). Data collected includes the group size (adult and children), the stay length (count of weekend and weeknight stays), guest upgrades (parking, meal plans, room types and count of special requests), booking details (price and reservation method), the date of stay, and status (whether or not the guest cancelled the reservation).
 
-Our team observed there was only one row of data for year 2015 and 2016. We additionally noticed there only 5 data points for meal plan 3. GroupSize, StayLength, HasChildren, and HasRequests were created from the existing dataset. GroupSize was an aggregation of count of adults and children, StayLength was an aggregation of Weekend and Weeknigths. HasChildren and HasRequests created binary, true/false (0 and 1) variables from the count of children and requests.
+Our team observed there was only one row of data for year 2015 and 2016. We additionally noticed there only 5 data points for meal plan 3. GroupSize, StayLength, HasChildren, HasRequests and Online were created from the existing dataset. GroupSize was an aggregation of count of adults and children, StayLength was an aggregation of Weekend and Weeknigths. HasChildren, HasRequests and Online created binary, true/false (0 and 1) variables from the count of children, requests and instances where the market was online.
 
 The status column (cancelled verses not cancelled), is the response variable of interest in this analysis.
 
@@ -124,6 +127,9 @@ The response variable of interest is status, whether or not a client cancelled t
 |HasRequests | Whether the booking had  |       C       |
 |            | any special requests     |               |
 |:----------:|:------------------------:|:-------------:| 
+|Online      | Indicator for an online  |       C       |
+|            | booking                  |               |
+|:----------:|:------------------------:|:-------------:| 
 | Adults     |  Number of adults in the |       Q       |
 |            |  booking                 |               |
 |:----------:|:------------------------:|:-------------:|
@@ -164,7 +170,7 @@ For our quantitative exploration, we focused on the aggregated data columns of g
 
 Looking at the side by side box plot, the lead time has the most value for predicting cancellations.
 
-```{r}
+```{r, echo=FALSE}
 # quantitative EDA
 
 # Compare means of each quantitative variable between canceled and not canceled groups
@@ -209,9 +215,9 @@ ggplot(hotel_long, aes(x = Status, y = Value, fill = Status)) +
 
 For our categorical exploration, we created side by side bar plots for room type, meal, market, month, request and if the group had children.
 
-Looking at the side by side bar plots, the requests appeared to be the most useful variable, followed by month and market.
+Looking at the side by side bar plots, the requests appeared to be the most useful variable, followed by month and market. After investigating the Online column created from Market, using the non-transformed Market column with all of the variables was more useful for our statistical model.
 
-```{r fig.width=6, fig.height=5}
+```{r fig.width=6, fig.height=5, echo=FALSE}
 # categorical EDA
 # Create a bar chart with white background and title
 gf_bar(~RoomType, fill=~Status, data = hotel_bookings) %>%
@@ -234,7 +240,7 @@ gf_bar(~RoomType, fill=~Status, data = hotel_bookings) %>%
 
 ```
 
-```{r fig.width=7, fig.height=5}
+```{r fig.width=7, fig.height=5, echo=FALSE}
 
 gf_bar(~Meal, fill=~Status, data = hotel_bookings) %>%
   gf_labs(
@@ -271,7 +277,7 @@ gf_bar(~Market, fill=~Status, data = hotel_bookings) %>%
   )
 
 ```
-```{r fig.width=8, fig.height=5}
+```{r fig.width=8, fig.height=5, echo=FALSE}
 # abbreviated month names in chronological order
 month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", 
                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
@@ -298,7 +304,7 @@ gf_bar(~Month, fill=~Status, data = hotel_bookings) %>%
   )
 
 ```
-```{r fig.width=4, fig.height=5}
+```{r fig.width=4, fig.height=5, echo=FALSE}
 gf_bar(~HasChildren, fill=~Status, data = hotel_bookings) %>%
   gf_labs(
     title = "Cancellation by HasChildren",
@@ -350,9 +356,26 @@ gf_bar(~HasRequests, fill=~Status, data = hotel_bookings) %>%
     )
 )
 
+gf_bar(~Online, fill=~Status, data = hotel_bookings) %>%
+  gf_labs(
+    title = "Cancellations by Online Bookings",
+    x = "Booking type (1 = Online)",
+    y = "Count"
+  ) %>%
+  gf_refine(
+    scale_fill_manual(values = c("Canceled" = "#FF6B6B", "Not_Canceled" = "#4ECDC4"))
+  ) %>%
+  gf_theme(
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+      legend.position = "bottom"
+    )
+)
+
 ```
 
-```{r}
+```{r, echo=FALSE}
 # function to generate proportion tables
 create_prop_table <- function(data, group_var) {
   group_var <- enquo(group_var)
@@ -372,6 +395,7 @@ parking_table <- create_prop_table(hotel_bookings, Parking)
 month_table <- create_prop_table(hotel_bookings, Month)
 requests_table <- create_prop_table(hotel_bookings, HasRequests)
 children_table <- create_prop_table(hotel_bookings, HasChildren)
+online_table <- create_prop_table(hotel_bookings, Online)
 
 # Function to create a nicely formatted kable table with rounded proportions
 print_pretty_kable <- function(table_data, title) {
@@ -393,6 +417,7 @@ print_pretty_kable(parking_table, "Parking")
 print_pretty_kable(month_table, "Month")
 print_pretty_kable(requests_table, "Special Requests")
 print_pretty_kable(children_table, "Has Children")
+print_pretty_kable(online_table, "Online Booking")
 
 ```
 
@@ -408,9 +433,7 @@ print_pretty_kable(children_table, "Has Children")
 
 ## 3.1 Objective 1
 
-Expand on this text...
-
-I do notice that the residuals verses fitted values have some flaring as the lead time increases, consider a square root transformation?
+The main values that we used to determine the best quantitative predictor were AIC and residual deviance; most of the models we created to find the best predictor of this nature yielded p-values that were lower than 2e-16. However, the AIC and residual deviance for the generalized linear model predicting Status with LeadTime was significantly lower than the values for AvgPrice, StayLength (the new variable synthesized from the number of weekdays and weeknights of each booking), and GroupSize (the new variable combining Adults and Children), reassuring LeadTime's strength as a predictor. With respect to the conditions of this model using only LeadTime, there is some concern about the equal variance condition; the values seem to be exhibiting some flaring near the right edge of the graph. We tried a square-root transformation on this model, but there was little to no improvement, so this was left out of the final model. 
 
 
 Logit function for Status using LeadTime:
@@ -430,7 +453,7 @@ $$H_0: \beta_1 = 0, H_a: \beta_1 \neq 0$$
 With a p-value < 2e^-16, we have strong evidence to reject the null hypothesis in favor of the alternative. LeadTime is useful for predicting hotel cancellations.
 
 
-```{r}
+```{r, echo=FALSE}
 
 # quantitative predictors
 price_model <- glm(factor(Status) ~ AvgPrice, family = binomial(link = "logit"), data = hotel_bookings)
@@ -456,7 +479,7 @@ plot(leadtime_model, which = 1)
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 
 # Parameters from your logistic regression model
 intercept <- 1.8046260
@@ -566,18 +589,30 @@ cat(sprintf("This corresponds to a %.2f%% decrease in odds per day\n",
 
 ## 3.2 Objective 2
 
-Looking at the AIC for the categorical models, Hasrequests was shown to be the best single categorical explanatory variable for predicting cancellations. As predicted by our exploratory data analysis, this was closely followed month and market.
+Looking at the AIC for the categorical models, HasRequests was shown to be the best single categorical explanatory variable for predicting cancellations. As predicted by our exploratory data analysis, this was closely followed by Month and Market.
 
-Add Interpretation of relevant estimates/statistics/p-values IN CONTEXT, note that HasRequests was transformed into a binary variable
+For our categorical analysis, we transformed Requests (a nominally quantitative variable) into a categorical variable, HasRequests, that indicates whether or not a given booking made a nonzero number of special requests. As evidenced by the model output for HasRequests, we note that the p-value for the variable's coefficient is virtually zero, meaning that HasRequests has an extremely statistically significant effect on cancellation status. We are 95% confident that the aforementioned coefficient lies between 1.05 and 1.14, i.e. we are 95% certain that for bookings with special requests, the logarithmic likelihood of a cancellation will increase by a factor of between 1.05 and 1.14.
 
-Model output for HasRequests:
 
-Coefficients:
-            Estimate Std. Error z value Pr(>|z|)    
-(Intercept)  0.27328    0.01435   19.04   <2e-16 ***
-HasRequests  1.09756    0.02411   45.53   <2e-16 ***
+Logit function for Status using HasRequests:
 
-```{r}
+$$\widehat{log(\frac{\pi}{1-\pi})} = 0.27328 + 1.09756(HasRequests)$$
+
+$$odds(Status) = e^{0.27328 + 1.09756(HasRequests)} $$
+
+Probability function for Status using HasRequests:
+
+$$p(Status) = \widehat \pi = \frac{e^{0.27328 + 1.09756(HasRequests)}}{1-e^{0.27328 + 1.09756(HasRequests)}}$$
+
+$$odds \space ratio = e^{\widehat \beta_1} = e^{1.09756} = 2.996845$$ 
+
+HasRequests is a binary categorical variable. When HasRequests = 1 the predicted odds of not cancelling are approximately 3 times higher than when HasRequests = 0.
+
+$$H_0: \beta_1 = 0, H_a: \beta_1 \neq 0$$
+
+With a p-value < 2e^-16, we have strong evidence to reject the null hypothesis in favor of the alternative. HasRequests is useful for predicting hotel cancellations.
+
+```{r, echo=FALSE}
 
 modr <- glm(factor(Status) ~ HasRequests, family = binomial(link = "logit"), data = hotel_bookings)
 # summary(modr)
@@ -585,7 +620,7 @@ modr <- glm(factor(Status) ~ HasRequests, family = binomial(link = "logit"), dat
 plot(modr, which = 1)
 
 #confidence interval for HasRequests
-confint.default(modr)
+#confint.default(modr)
 
 mod1 <- glm(factor(Status) ~ RoomType, family = binomial(link = "logit"), data = hotel_bookings)
 # summary(mod1)
@@ -620,12 +655,20 @@ When observing the ANOVA table, the HasChildren variable was not statistically s
 
 AIC with the forward step analysis recommended using all the remaining variables, including LeadTime, HasRequests, Market, Month, AvgPrice, Parking, RoomType, StayLength, Meal and GroupSize. The AIC of the model was 30,674. 
 
-Our output code warned us that this model was likely overfitting, so we began used the output from an ANOVA table to eliminate variables one at a time, starting with GroupSize (the highest p value). The final model we selected used LeadTime, Market, Requests, Month, AvgPrice, and StayLength.
+The large number of variables made us concerned about the potential of overfitting. We used the output from an ANOVA table to eliminate variables one at a time, starting with GroupSize (the highest p value). The final model we selected used LeadTime, Market, Requests, Month, AvgPrice, and StayLength.
 
-While our AIC increased slightly to  31,109, we reduced the variable count from 10 to 6. The model with 10 variables created warnings about over-fitting. The improved 6 variable model had optimized p values for each variable and eliminated the warnings of over fitting.
+While our AIC increased slightly to  31,109, we reduced the variable count from 10 to 6. The 6 variable model had optimized p values for each explanatory variable. Additionally, our model had good variance and normality, in addition to fitting closely to the expected results (as indicated by the empirical logit plot).
 
+The data was divided into ten groups for cross-validation to test the predicted results compared to the actual and produced the following results:
 
-```{r}
+  - Accuracy: 0.806
+  - Sensitivity: 0.894
+  - Specificity: 0.626
+  - AUC: 0.859
+
+The high sensitivity indicates that the model is very good at identifying reservations that will not be cancelled. The specificity value of .626 means our model is more likely to falsely predict a customer will not cancel when they end up cancelling.
+
+```{r, echo=FALSE}
 new_model <- glm(factor(Status) ~ LeadTime + factor(Market) + HasRequests + factor(Month) + AvgPrice + StayLength, family = binomial(link = "logit"), data=hotel_bookings)
 
 
@@ -636,10 +679,200 @@ print(anova_table)
 AIC(new_model)
 
 ```
-```{r}
+```{r, echo=FALSE}
 #ASSESS
 
+# Other diagnostic plots for the model
+plot(new_model, which = c(1, 2))  # Residuals vs Fitted and Normal Q-Q plot
+
+# Create an empirical logit plot for the entire model
+plot_model_fit <- function(model, bins = 10) {
+  # Get predicted probabilities from the model
+  pred_probs <- predict(model, type = "response")
+  
+  # Get actual responses (as 0/1)
+  actual <- as.numeric(model$model[[1]]) - 1
+  
+  # Create bins based on predicted probabilities
+  breaks <- quantile(pred_probs, probs = seq(0, 1, length.out = bins + 1))
+  bin_groups <- cut(pred_probs, breaks = breaks, include.lowest = TRUE)
+  
+  # Calculate empirical logit for each bin
+  bin_data <- data.frame(
+    bin = bin_groups,
+    pred = pred_probs,
+    actual = actual
+  )
+  
+  # Calculate average predicted probability and observed proportion for each bin
+  bin_summary <- aggregate(cbind(pred, actual) ~ bin, data = bin_data, 
+                         FUN = function(x) c(mean(x)))
+  
+  # Calculate empirical logit
+  bin_summary$logit_pred <- log(bin_summary$pred / (1 - bin_summary$pred))
+  bin_summary$logit_actual <- log((bin_summary$actual + 0.5/nrow(bin_summary)) / 
+                               (1 - bin_summary$actual + 0.5/nrow(bin_summary)))
+  
+  # Count observations per bin
+  bin_counts <- table(bin_groups)
+  bin_summary$count <- as.vector(bin_counts)
+  
+  # Create plot
+  plot(bin_summary$logit_pred, bin_summary$logit_actual,
+       xlab = "Predicted logit", ylab = "Observed logit",
+       main = "Empirical Logit Plot for Model Fit",
+       pch = 19, cex = sqrt(bin_summary$count / max(bin_summary$count)) * 2)
+  
+  # Add reference line (y = x)
+  abline(0, 1, col = "red", lty = 2)
+  
+  # Add regression line
+  abline(lm(logit_actual ~ logit_pred, data = bin_summary, 
+          weights = count), col = "blue")
+  
+  # Add legend
+  legend("topleft", legend = c("Perfect fit", "Actual fit"), 
+         col = c("red", "blue"), lty = c(2, 1))
+  
+  return(bin_summary)
+}
+
+# Create the empirical logit plot for the model
+model_fit <- plot_model_fit(new_model, bins = 10)
+
+# Print the bin summary data
+#print(model_fit)
+
 ```
+
+
+```{r, echo=FALSE}
+#Cross validation
+# Set seed for reproducibility
+set.seed(123)
+
+# Define number of folds
+k <- 10
+
+# Create folds
+folds <- sample(1:k, nrow(hotel_bookings), replace = TRUE)
+
+# Initialize performance metrics
+cv_metrics <- data.frame(
+  fold = 1:k,
+  accuracy = numeric(k),
+  sensitivity = numeric(k),
+  specificity = numeric(k),
+  auc = numeric(k)
+)
+
+# Perform k-fold cross-validation
+for (i in 1:k) {
+  # Split data into training and test sets
+  train_data <- hotel_bookings[folds != i, ]
+  test_data <- hotel_bookings[folds == i, ]
+  
+  # Fit model on training data
+  cv_model <- glm(factor(Status) ~ LeadTime + factor(Market) + HasRequests + 
+                 factor(Month) + AvgPrice + StayLength, 
+                 family = binomial(link = "logit"), 
+                 data = train_data)
+  
+  # Make predictions on test data
+  predictions <- predict(cv_model, newdata = test_data, type = "response")
+  predicted_class <- ifelse(predictions > 0.5, 1, 0)
+  actual_class <- as.numeric(factor(test_data$Status)) - 1
+  
+  # Create confusion matrix
+  conf_matrix <- table(Predicted = predicted_class, Actual = actual_class)
+  
+  # Calculate performance metrics
+  if (dim(conf_matrix)[1] == 2 && dim(conf_matrix)[2] == 2) {
+    # When both classes are present in the fold
+    accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
+    sensitivity <- conf_matrix[2, 2] / sum(conf_matrix[, 2])
+    specificity <- conf_matrix[1, 1] / sum(conf_matrix[, 1])
+    
+    # Calculate AUC
+    library(pROC)
+    roc_obj <- roc(actual_class, predictions)
+    auc_value <- auc(roc_obj)
+  } else {
+    # Handle edge case when a fold might be missing a class
+    accuracy <- sum(predicted_class == actual_class) / length(actual_class)
+    sensitivity <- NA
+    specificity <- NA
+    auc_value <- NA
+  }
+  
+  # Store metrics for this fold
+  cv_metrics$accuracy[i] <- accuracy
+  cv_metrics$sensitivity[i] <- sensitivity
+  cv_metrics$specificity[i] <- specificity
+  cv_metrics$auc[i] <- auc_value
+}
+
+# Calculate average performance across folds
+cv_summary <- colMeans(cv_metrics[, -1], na.rm = TRUE)
+cv_sd <- apply(cv_metrics[, -1], 2, sd, na.rm = TRUE)
+
+# Print results
+print("Cross-validation results:")
+print(cv_metrics)
+print("Average performance:")
+print(cv_summary)
+print("Standard deviation of performance:")
+
+#data summary of folds
+#print(cv_sd)
+
+```
+
+**Key Quantitative Predictors:***
+
+$$odds \space ratio_{LeadTime} = e^{-0.0161356} = 0.984$$ 
+
+For each additional day in lead time, the predicted odds of not cancelling decrease by a factor of 0.984, holding all other variables constant.
+
+$$odds \space ratio_{AvgPrice} = e^{-0.0145549} = 0.985$$ 
+
+For each $1 increase in average price, the predicted odds of not cancelling decrease by a factor of 0.985, holding all other variables constant. 
+
+$$odds \space ratio_{StayTime} = e^{-0.0643062} = 0.938$$ 
+
+For each additional night in the hotel, the predicted odds of not cancelling decrease by a factor of 0.938, holding all other variables constant.
+
+To summarize, the business implication is that longer lead times, higher prices, and longer stays correlate with higher cancellation risk. In addition, LeadTime, AvgPrice, and StayTime have respective p-values of <2e-16, <2e-16, and 7.49e-16, indicating that these variables are useful to predict Status.
+
+**Key Categorical Predictors:**
+
+$$odds \space ratio_{HasRequests} = e^{2.0247462} = 7.57$$ 
+
+Holding all other variables constant, when a guest makes at least one special request the predicted odds of not cancelling are approximately 8 times higher than those without special requests. With a p-value <2e-16, this variable is useful to predict Status.
+
+$$odds \space ratio_{Market(Corporate)} = e^{1.0866028} = 2.96$$ 
+
+Holding all other variables constant, when Gold Mine Resorts has a corporate booking the predicted odds of not cancelling are approximately 3 times higher than an aviation booking (baseline). With a p-value of 3.95e-07, this segment is useful in predicting Status.
+
+$$odds \space ratio_{Market(Offline)} = e^{1.6324226} = 5.12$$ 
+
+Holding all other variables constant, when Gold Mine Resorts has an offline booking the predicted odds of not cancelling are approximately 5 times higher than an aviation booking (baseline). With a p-value of 8.80e-16, this segment is useful in predicting Status.
+
+$$odds \space ratio_{Market(Online)} = e^{-0.2199951} = 0.8$$ 
+
+Holding all other variables constant, when Gold Mine Resorts has an online booking the predicted odds of not cancelling decrease by a factor of 0.8 compared to an aviation booking (baseline). However, with a p-value of 0.27308, this segment is not statistically significant in predicting Status.
+
+$$odds \space ratio_{Month(Feb-Nov)} \approx e^{-2.28} = 0.102$$
+
+Holding all other variables constant, when there is a booking made between February to November (all \beta's are relatively similar in range) the predicted odds of not cancelling decrease by a factor of 0.102 when compared to bookings made in January (baseline). Each individual month is statistically significant in predicting Status with p-values <2e-16.
+
+$$odds \space ratio_{Month(Dec)} \approx e^{-0.0643} = 0.55$$ 
+
+Holding all other variables constant, when there is a booking made in December the predicted odds of not cancelling decrease by a factor of 0.55 when compared to bookings made in January (baseline). December is a statistically significant segment of Month in predicting Status with a p-value of 0.00674.
+
+$$H_0: \beta_k = 0, H_a: \beta_k \neq 0$$
+
+To summarize, the business implication is that corporate/offline bookings are more reliable than aviation bookings. In addition, the months of February to November have a higher cancellation risk than January. Specifically, the peak cancellation risk occurs in the month of February where the predicted odds of not cancelling decrease by a factor of 0.059 compared to January (holding all other variables constant).
 
 # 4. Conclusions 
 
@@ -647,7 +880,7 @@ AIC(new_model)
 
 **Objective 1:**  
 
-Talk about the quantitative model
+Our final conclusion about Objective 1 is that for the reasons described earlier, LeadTime is the best single quantitative predictor of whether or not a given booking will be cancelled, even when considering new variables synthesized from the dataset for the purpose of analysis. 
 
 ```{r}
 
@@ -659,9 +892,10 @@ exp(confint.default(leadtime_model))
 
 ```
 
-**Objective 2:**
+**Objective 2:** 
 
-Talk about the categoric model
+When considering only the categorical variables available to us from the dataset (and those that we synthesized ourselves), we found that HasRequests (i.e. whether a reservation has any special requests) is the most useful variable for predicting cancellation of bookings.
+
 
 ```{r}
 
@@ -673,10 +907,7 @@ confint.default(modr)
 
 **Objective 3:**
 
-*(all research objectives should be addressed, in the same order)*
-
-Talk about the final model
-
+With all of the original and synthesized variables available to us to pick for our final model, we observed above that the most useful model for predicting booking cancellation status includes the predictors of LeadTime, Market, Month, AvgPrice, and StayLength. Gold Mine Resorts should focus on these categories and note that they are the keys to minimizing cancellations in the future. There additional factors, such as year, that have a role in whether or not people cancel, but these are not able to be controlled by Gold Mine Resorts. 
 
 While this model is a good starting point for predicting hotel cancellations, we noticed that there was a significant increase in both the count of reservations and the count of online reservations that led to cancellations from 2017 to 2018. If Gold Mine Resorts has access to further details about the sources for online bookings, this may prove to be a beneficial research study in the future.
 
