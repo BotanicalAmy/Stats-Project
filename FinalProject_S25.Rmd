@@ -98,67 +98,32 @@ The final goal of our statistical analysis will combine our understanding of qua
 The response variable of interest is status, whether or not a client cancelled their booking. The possible explanatory variables include both categorical and quantitative options. The number of requests from a client was converted to a categorical variable. A new column called HasRequests was created, with 1 indicating the customer had a special request. We made a similar to transformation to the children column, transforming this into a binary column indicating whether or not there were children in the group.
 
 
-*Create a table here - it should include variable names and types*
+*Table of variable names and types*
+
+| Variable    | Description of Variable            | Variable Type |
+|-------------|-------------------------------------|--------------|
+| Status      | Cancellation status of booking      | C            |
+| Meal        | Type of meal plan selected          | C            |
+| Parking     | Parking option selection            | C            |
+| RoomType    | Type of room booked                 | C            |
+| Market      | Market segment of booking           | C            |
+| Month       | Month of booking date               | C            |
+| Requests    | Number of special requests made     | C            |
+| HasChildren | Indicator for children as guests    | C            |
+| HasRequests | Indicator for special requests      | C            |
+| Online      | Indicator for an online booking     | C            |
+| Adults      | Number of adults in the booking     | Q            |
+| Children    | Number of children in the booking   | Q            |
+| GroupSize   | Number of people in the group       | Q            |
+| StayLength  | Total length of stay (nights)       | Q            |
+| Weekends    | Number of weekend nights stayed     | Q            |
+| Weeknights  | Number of weeknights stayed         | Q            |
+| LeadTime    | Num. of days bw booking & arrival   | Q            |
+| AvgPrice    | Avg. room price (week of booking)   | Q            |
+| Year        | Year of the reservation             | Q            |
 
 
-|            | Description of Variable  | Variable Type |
-|:----------:|:------------------------:|:-------------:|
-| Status     |   Cancellation status of |       C       |
-|            |   booking                |               |
-|:----------:|:------------------------:|:-------------:|
-| Meal       |   Type of meal in the    |       C       |
-|            |   booking                |               |
-|:----------:|:------------------------:|:-------------:|
-| Parking    | Whether or not a parking |       C       |
-|            | space is in the booking  |               |
-|:----------:|:------------------------:|:-------------:|
-| RoomType   |  Type of room booked     |       C       |
-|:----------:|:------------------------:|:-------------:|
-| Market     | Market segment of booking|       C       |
-|:----------:|:------------------------:|:-------------:|
-| Month      | Month of booking date    |       C       |
-|:----------:|:------------------------:|:-------------:|
-| Requests   | Num. of special requests |       C       |
-|            | made by the customer     |               |
-|:----------:|:------------------------:|:-------------:|
-|HasChildren | Indicates whether or not |       C       |
-|            | the booking has children |               |
-|:----------:|:------------------------:|:-------------:| 
-|HasRequests | Whether the booking had  |       C       |
-|            | any special requests     |               |
-|:----------:|:------------------------:|:-------------:| 
-|Online      | Indicator for an online  |       C       |
-|            | booking                  |               |
-|:----------:|:------------------------:|:-------------:| 
-| Adults     |  Number of adults in the |       Q       |
-|            |  booking                 |               |
-|:----------:|:------------------------:|:-------------:|
-| Children   | Number of children in the|       Q       |
-|            | booking                  |               |
-|:----------:|:------------------------:|:-------------:|
-| GroupSize  | Number of people in the  |       Q       |
-|            | booking                  |               |
-|:----------:|:------------------------:|:-------------:|
-| StayLength | Total of weekend plus    |       Q       |
-|            | weeknights               |               |
-|:----------:|:------------------------:|:-------------:|
-| Weekends   | Number of weekend nights |       Q       |
-|            | in the booking           |               |
-|:----------:|:------------------------:|:-------------:|
-| Weeknights | Number of weeknights in  |       Q       |
-|            | the booking              |               |
-|:----------:|:------------------------:|:-------------:|
-| LeadTime   | Number of days between   |       Q       |
-|            | booking date and arrival |               |
-|:----------:|:------------------------:|:-------------:|
-| AvgPrice   | Average room price on the|       Q       |
-|            | week of the booking      |               |
-|:----------:|:------------------------:|:-------------:|
-| Year       | Year of the reservation  |       Q       |
-|:----------:|:------------------------:|:-------------:|
-
-
-
+\pagebreak
 
 #  2. Detailed Exploratory Data Analysis (EDA)
 
@@ -211,13 +176,15 @@ ggplot(hotel_long, aes(x = Status, y = Value, fill = Status)) +
 
 ```
 
+\pagebreak
+
 ### Categorical EDA
 
 For our categorical exploration, we created side by side bar plots for room type, meal, market, month, request and if the group had children.
 
 Looking at the side by side bar plots, the requests appeared to be the most useful variable, followed by month and market. After investigating the Online column created from Market, using the non-transformed Market column with all of the variables was more useful for our statistical model.
 
-```{r fig.width=6, fig.height=5, echo=FALSE}
+```{r fig.width=6, fig.height=4, echo=FALSE}
 # categorical EDA
 # Create a bar chart with white background and title
 gf_bar(~RoomType, fill=~Status, data = hotel_bookings) %>%
@@ -240,7 +207,7 @@ gf_bar(~RoomType, fill=~Status, data = hotel_bookings) %>%
 
 ```
 
-```{r fig.width=7, fig.height=5, echo=FALSE}
+```{r fig.width=7, fig.height=4, echo=FALSE}
 
 gf_bar(~Meal, fill=~Status, data = hotel_bookings) %>%
   gf_labs(
@@ -277,7 +244,7 @@ gf_bar(~Market, fill=~Status, data = hotel_bookings) %>%
   )
 
 ```
-```{r fig.width=8, fig.height=5, echo=FALSE}
+```{r fig.width=8, fig.height=6, echo=FALSE}
 # abbreviated month names in chronological order
 month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", 
                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
@@ -304,10 +271,10 @@ gf_bar(~Month, fill=~Status, data = hotel_bookings) %>%
   )
 
 ```
-```{r fig.width=4, fig.height=5, echo=FALSE}
+```{r fig.width=3, fig.height=4, echo=FALSE}
 gf_bar(~HasChildren, fill=~Status, data = hotel_bookings) %>%
   gf_labs(
-    title = "Cancellation by HasChildren",
+    title = "Cancel by HasChildren",
     x = "Has Children (0 = No, 1 = Yes)",
     y = "Count"
   ) %>%
@@ -324,7 +291,7 @@ gf_bar(~HasChildren, fill=~Status, data = hotel_bookings) %>%
 
 gf_bar(~Parking, fill=~Status, data = hotel_bookings) %>%
   gf_labs(
-    title = "Cancellation by Parking Option",
+    title = "Cancel by Parking",
     x = "Parking",
     y = "Count"
   ) %>%
@@ -341,7 +308,7 @@ gf_bar(~Parking, fill=~Status, data = hotel_bookings) %>%
 
 gf_bar(~HasRequests, fill=~Status, data = hotel_bookings) %>%
   gf_labs(
-    title = "Cancellations by HasRequest",
+    title = "Cancel by HasRequest",
     x = "Had a special request",
     y = "Count"
   ) %>%
@@ -358,7 +325,7 @@ gf_bar(~HasRequests, fill=~Status, data = hotel_bookings) %>%
 
 gf_bar(~Online, fill=~Status, data = hotel_bookings) %>%
   gf_labs(
-    title = "Cancellations by Online Bookings",
+    title = "Cancel by Online",
     x = "Booking type (1 = Online)",
     y = "Count"
   ) %>%
@@ -406,7 +373,7 @@ print_pretty_kable <- function(table_data, title) {
     kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
                   full_width = FALSE) %>%
     column_spec(1, bold = TRUE) %>%
-    row_spec(0, bold = TRUE, background = "#E8E8E8")
+    row_spec(0, bold = TRUE)
 }
 
 # Print each table with nice formatting
@@ -587,6 +554,8 @@ cat(sprintf("This corresponds to a %.2f%% decrease in odds per day\n",
 
 ```
 
+\pagebreak
+
 ## 3.2 Objective 2
 
 Looking at the AIC for the categorical models, HasRequests was shown to be the best single categorical explanatory variable for predicting cancellations. As predicted by our exploratory data analysis, this was closely followed by Month and Market.
@@ -649,6 +618,8 @@ mod4 <- glm(factor(Status) ~ Meal, family = binomial(link = "logit"), data = hot
 
 ```
 
+\pagebreak
+
 ## 3.3 Objective 3
 
 When observing the ANOVA table, the HasChildren variable was not statistically significant. We replaced the HasChildren variable with Children and still saw observed a large p value, greater than .2 in both instances. We additionally removed year from the statistical model, since this historical data point is not useful for future predictions.
@@ -673,12 +644,13 @@ new_model <- glm(factor(Status) ~ LeadTime + factor(Market) + HasRequests + fact
 
 
 anova_table <- Anova(new_model, test = "LR")
-print(anova_table)
+# print(anova_table)
 
 # Get the AIC
-AIC(new_model)
+# AIC(new_model)
 
 ```
+
 ```{r, echo=FALSE}
 #ASSESS
 
@@ -747,84 +719,41 @@ model_fit <- plot_model_fit(new_model, bins = 10)
 
 
 ```{r, echo=FALSE}
-#Cross validation
+#cross validation
 # Set seed for reproducibility
 set.seed(123)
 
-# Define number of folds
-k <- 10
+# Create a random split (80% training, 20% test)
+train_indices <- sample(1:nrow(hotel_bookings), size = 0.8 * nrow(hotel_bookings))
+train_data <- hotel_bookings[train_indices, ]
+test_data <- hotel_bookings[-train_indices, ]
 
-# Create folds
-folds <- sample(1:k, nrow(hotel_bookings), replace = TRUE)
+# Build the model on training data
+train_model <- glm(factor(Status) ~ LeadTime + factor(Market) + HasRequests + 
+                  factor(Month) + AvgPrice + StayLength, 
+                  family = binomial(link = "logit"), 
+                  data = train_data)
 
-# Initialize performance metrics
-cv_metrics <- data.frame(
-  fold = 1:k,
-  accuracy = numeric(k),
-  sensitivity = numeric(k),
-  specificity = numeric(k),
-  auc = numeric(k)
-)
+# get predictions for both training and test data
+train_predictions <- predict(train_model, newdata = train_data, type = "response")
+test_predictions <- predict(train_model, newdata = test_data, type = "response")
 
-# Perform k-fold cross-validation
-for (i in 1:k) {
-  # Split data into training and test sets
-  train_data <- hotel_bookings[folds != i, ]
-  test_data <- hotel_bookings[folds == i, ]
-  
-  # Fit model on training data
-  cv_model <- glm(factor(Status) ~ LeadTime + factor(Market) + HasRequests + 
-                 factor(Month) + AvgPrice + StayLength, 
-                 family = binomial(link = "logit"), 
-                 data = train_data)
-  
-  # Make predictions on test data
-  predictions <- predict(cv_model, newdata = test_data, type = "response")
-  predicted_class <- ifelse(predictions > 0.5, 1, 0)
-  actual_class <- as.numeric(factor(test_data$Status)) - 1
-  
-  # Create confusion matrix
-  conf_matrix <- table(Predicted = predicted_class, Actual = actual_class)
-  
-  # Calculate performance metrics
-  if (dim(conf_matrix)[1] == 2 && dim(conf_matrix)[2] == 2) {
-    # When both classes are present in the fold
-    accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
-    sensitivity <- conf_matrix[2, 2] / sum(conf_matrix[, 2])
-    specificity <- conf_matrix[1, 1] / sum(conf_matrix[, 1])
-    
-    # Calculate AUC
-    library(pROC)
-    roc_obj <- roc(actual_class, predictions)
-    auc_value <- auc(roc_obj)
-  } else {
-    # Handle edge case when a fold might be missing a class
-    accuracy <- sum(predicted_class == actual_class) / length(actual_class)
-    sensitivity <- NA
-    specificity <- NA
-    auc_value <- NA
-  }
-  
-  # Store metrics for this fold
-  cv_metrics$accuracy[i] <- accuracy
-  cv_metrics$sensitivity[i] <- sensitivity
-  cv_metrics$specificity[i] <- specificity
-  cv_metrics$auc[i] <- auc_value
-}
+# Convert actual values to binary for comparison
+train_actual <- as.numeric(factor(train_data$Status)) - 1
+test_actual <- as.numeric(factor(test_data$Status)) - 1
 
-# Calculate average performance across folds
-cv_summary <- colMeans(cv_metrics[, -1], na.rm = TRUE)
-cv_sd <- apply(cv_metrics[, -1], 2, sd, na.rm = TRUE)
+# Calculate correlation in training data
+train_correlation <- cor(train_predictions, train_actual)
+print(paste("Training correlation:", round(train_correlation, 4)))
 
-# Print results
-print("Cross-validation results:")
-print(cv_metrics)
-print("Average performance:")
-print(cv_summary)
-print("Standard deviation of performance:")
+# Calculate correlation in test data (this is the CVC)
+test_correlation <- cor(test_predictions, test_actual)
+print(paste("Cross-validation correlation (CVC):", round(test_correlation, 4)))
 
-#data summary of folds
-#print(cv_sd)
+# Calculate shrinkage
+shrinkage <- train_correlation - test_correlation
+print(paste("Shrinkage:", round(shrinkage, 4)))
+print(paste("Shrinkage percentage:", round(shrinkage/train_correlation * 100, 2), "%"))
 
 ```
 
@@ -874,6 +803,8 @@ $$H_0: \beta_k = 0, H_a: \beta_k \neq 0$$
 
 To summarize, the business implication is that corporate/offline bookings are more reliable than aviation bookings. In addition, the months of February to November have a higher cancellation risk than January. Specifically, the peak cancellation risk occurs in the month of February where the predicted odds of not cancelling decrease by a factor of 0.059 compared to January (holding all other variables constant).
 
+\pagebreak
+
 # 4. Conclusions 
 
 *Succinct response to each question laid out in 1.1.  This a much shorter version of section 3, and focuses on conclusions rather than the analysis.*
@@ -885,10 +816,10 @@ Our final conclusion about Objective 1 is that for the reasons described earlier
 ```{r}
 
 #gets the confidence interval, which does not include 0 therefore valid
-confint.default(leadtime_model)
+# confint.default(leadtime_model)
 #gets the CI on the odds ratio scale, for every 1 unit increase in LeadTime, the odds of cancellation
 #(vs. non-cancellation) multiply by 0.9880 to 0.9881 w/95% confidence
-exp(confint.default(leadtime_model))
+# exp(confint.default(leadtime_model))
 
 ```
 
@@ -900,7 +831,7 @@ When considering only the categorical variables available to us from the dataset
 ```{r}
 
 #confidence interval for HasRequests
-confint.default(modr)
+# confint.default(modr)
 
 ```
 
@@ -962,12 +893,14 @@ ggplot(cancellation_df, aes(x = Year, y = Count, fill = MarketType)) +
 
 ```
 
+\pagebreak
+
 # 5. Appendix 
 
 *This section should include the code and output for the models used to answer the research objectives.*
 
 
-```{r}
+```{r, include=TRUE}
 # quantitative code
 price_model <- glm(factor(Status) ~ AvgPrice, family = binomial(link = "logit"), data = hotel_bookings)
 summary(price_model)
@@ -1023,5 +956,88 @@ print(anova_table)
 
 # Get the AIC
 AIC(new_model)
+
+```
+
+
+```{r, echo=FALSE}
+#Cross validation
+# Set seed for reproducibility
+set.seed(123)
+
+# Define number of folds
+k <- 10
+
+# Create folds
+folds <- sample(1:k, nrow(hotel_bookings), replace = TRUE)
+ 
+# Initialize performance metrics
+cv_metrics <- data.frame(
+   fold = 1:k,
+   accuracy = numeric(k),
+   sensitivity = numeric(k),
+   specificity = numeric(k),
+   auc = numeric(k)
+ )
+ 
+# Perform k-fold cross-validation
+ for (i in 1:k) {
+   # Split data into training and test sets
+   train_data <- hotel_bookings[folds != i, ]
+   test_data <- hotel_bookings[folds == i, ]
+   
+# Fit model on training data
+  cv_model <- glm(factor(Status) ~ LeadTime + factor(Market) + HasRequests + 
+                  factor(Month) + AvgPrice + StayLength, 
+                  family = binomial(link = "logit"), 
+                  data = train_data)
+   
+# Make predictions on test data
+   predictions <- predict(cv_model, newdata = test_data, type = "response")
+   predicted_class <- ifelse(predictions > 0.5, 1, 0)
+   actual_class <- as.numeric(factor(test_data$Status)) - 1
+  
+   # Create confusion matrix
+   conf_matrix <- table(Predicted = predicted_class, Actual = actual_class)
+   
+   # Calculate performance metrics
+   if (dim(conf_matrix)[1] == 2 && dim(conf_matrix)[2] == 2) {
+     # When both classes are present in the fold
+     accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
+     sensitivity <- conf_matrix[2, 2] / sum(conf_matrix[, 2])
+     specificity <- conf_matrix[1, 1] / sum(conf_matrix[, 1])
+     
+     # Calculate AUC
+     library(pROC)
+     roc_obj <- roc(actual_class, predictions)
+    auc_value <- auc(roc_obj)
+   } else {
+     # Handle edge case when a fold might be missing a class
+     accuracy <- sum(predicted_class == actual_class) / length(actual_class)
+     sensitivity <- NA
+     specificity <- NA
+     auc_value <- NA
+   }
+   
+   # Store metrics for this fold
+   cv_metrics$accuracy[i] <- accuracy
+   cv_metrics$sensitivity[i] <- sensitivity
+   cv_metrics$specificity[i] <- specificity
+   cv_metrics$auc[i] <- auc_value
+ }
+ 
+# Calculate average performance across folds
+ cv_summary <- colMeans(cv_metrics[, -1], na.rm = TRUE)
+ cv_sd <- apply(cv_metrics[, -1], 2, sd, na.rm = TRUE)
+ 
+# Print results
+print("Cross-validation results:")
+print(cv_metrics)
+print("Average performance:")
+print(cv_summary)
+print("Standard deviation of performance:")
+
+#data summary of folds
+print(cv_sd)
 
 ```
