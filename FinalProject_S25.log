@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.23)  25 APR 2025 16:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.23)  29 APR 2025 16:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -464,25 +464,16 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__pdf_internal_box=\box74
 ) (./FinalProject_S25.aux
 
-LaTeX Warning: Label `tab:unnamed-chunk-8' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-17' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-8' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-18' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-8' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-19' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-8' multiply defined.
-
-
-LaTeX Warning: Label `tab:unnamed-chunk-8' multiply defined.
-
-
-LaTeX Warning: Label `tab:unnamed-chunk-8' multiply defined.
-
-
-LaTeX Warning: Label `tab:unnamed-chunk-8' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-20' multiply defined.
 
 )
 \openout1 = `FinalProject_S25.aux'.
@@ -576,75 +567,71 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 99.
 (c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 116.
-(c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
 
 [1
 
-{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
 
 [2]
-Overfull \hbox (16.45041pt too wide) in alignment at lines 238--246
+Overfull \hbox (16.45041pt too wide) in alignment at lines 214--222
  [] [] [] [] [] 
  []
 
-<FinalProject_S25_files/figure-latex/unnamed-chunk-3-1.pdf, id=24, 469.755pt x 325.215pt>
+<FinalProject_S25_files/figure-latex/unnamed-chunk-3-1.pdf, id=23, 469.755pt x 325.215pt>
 File: FinalProject_S25_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use FinalProject_S25_files/figure-latex/unnamed-chunk-3-1.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 248.
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 224.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
 
 [3 <./FinalProject_S25_files/figure-latex/unnamed-chunk-3-1.pdf>]
-<FinalProject_S25_files/figure-latex/unnamed-chunk-4-1.pdf, id=37, 433.62pt x 289.08pt>
+<FinalProject_S25_files/figure-latex/unnamed-chunk-4-1.pdf, id=36, 433.62pt x 289.08pt>
 File: FinalProject_S25_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use FinalProject_S25_files/figure-latex/unnamed-chunk-4-1.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-4-1.pdf  used on input line 263.
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-4-1.pdf  used on input line 239.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<FinalProject_S25_files/figure-latex/unnamed-chunk-5-1.pdf, id=38, 505.89pt x 289.08pt>
+<FinalProject_S25_files/figure-latex/unnamed-chunk-5-1.pdf, id=37, 505.89pt x 289.08pt>
 File: FinalProject_S25_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use FinalProject_S25_files/figure-latex/unnamed-chunk-5-1.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-5-1.pdf  used on input line 265.
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-5-1.pdf  used on input line 241.
 (pdftex.def)             Requested size: 469.76265pt x 268.43579pt.
-<FinalProject_S25_files/figure-latex/unnamed-chunk-5-2.pdf, id=39, 505.89pt x 289.08pt>
+<FinalProject_S25_files/figure-latex/unnamed-chunk-5-2.pdf, id=38, 505.89pt x 289.08pt>
 File: FinalProject_S25_files/figure-latex/unnamed-chunk-5-2.pdf Graphic file (type pdf)
 <use FinalProject_S25_files/figure-latex/unnamed-chunk-5-2.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-5-2.pdf  used on input line 266.
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-5-2.pdf  used on input line 242.
 (pdftex.def)             Requested size: 469.76265pt x 268.43579pt.
-<FinalProject_S25_files/figure-latex/unnamed-chunk-6-1.pdf, id=40, 578.16pt x 433.62pt>
+<FinalProject_S25_files/figure-latex/unnamed-chunk-6-1.pdf, id=39, 578.16pt x 433.62pt>
 File: FinalProject_S25_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use FinalProject_S25_files/figure-latex/unnamed-chunk-6-1.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-6-1.pdf  used on input line 267.
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-6-1.pdf  used on input line 243.
 (pdftex.def)             Requested size: 469.75385pt x 352.31538pt.
-<FinalProject_S25_files/figure-latex/unnamed-chunk-7-1.pdf, id=41, 216.81pt x 289.08pt>
+<FinalProject_S25_files/figure-latex/unnamed-chunk-7-1.pdf, id=40, 216.81pt x 289.08pt>
 File: FinalProject_S25_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use FinalProject_S25_files/figure-latex/unnamed-chunk-7-1.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-7-1.pdf  used on input line 268.
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-7-1.pdf  used on input line 244.
 (pdftex.def)             Requested size: 216.81938pt x 289.09251pt.
-<FinalProject_S25_files/figure-latex/unnamed-chunk-7-2.pdf, id=42, 216.81pt x 289.08pt>
+<FinalProject_S25_files/figure-latex/unnamed-chunk-7-2.pdf, id=41, 216.81pt x 289.08pt>
 File: FinalProject_S25_files/figure-latex/unnamed-chunk-7-2.pdf Graphic file (type pdf)
 <use FinalProject_S25_files/figure-latex/unnamed-chunk-7-2.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-7-2.pdf  used on input line 269.
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-7-2.pdf  used on input line 245.
 (pdftex.def)             Requested size: 216.81938pt x 289.09251pt.
-<FinalProject_S25_files/figure-latex/unnamed-chunk-7-3.pdf, id=43, 216.81pt x 289.08pt>
+<FinalProject_S25_files/figure-latex/unnamed-chunk-7-3.pdf, id=42, 216.81pt x 289.08pt>
 File: FinalProject_S25_files/figure-latex/unnamed-chunk-7-3.pdf Graphic file (type pdf)
 <use FinalProject_S25_files/figure-latex/unnamed-chunk-7-3.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-7-3.pdf  used on input line 270.
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-7-3.pdf  used on input line 246.
 (pdftex.def)             Requested size: 216.81938pt x 289.09251pt.
-<FinalProject_S25_files/figure-latex/unnamed-chunk-7-4.pdf, id=44, 216.81pt x 289.08pt>
+<FinalProject_S25_files/figure-latex/unnamed-chunk-7-4.pdf, id=43, 216.81pt x 289.08pt>
 File: FinalProject_S25_files/figure-latex/unnamed-chunk-7-4.pdf Graphic file (type pdf)
 <use FinalProject_S25_files/figure-latex/unnamed-chunk-7-4.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-7-4.pdf  used on input line 271.
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-7-4.pdf  used on input line 247.
 (pdftex.def)             Requested size: 216.81938pt x 289.09251pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--272
+Underfull \hbox (badness 10000) in paragraph at lines 241--248
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--272
+Underfull \hbox (badness 10000) in paragraph at lines 241--248
 [] []
  []
 
@@ -654,105 +641,103 @@ Underfull \hbox (badness 10000) in paragraph at lines 265--272
 
 [5 <./FinalProject_S25_files/figure-latex/unnamed-chunk-5-1.pdf> <./FinalProject_S25_files/figure-latex/unnamed-chunk-5-2.pdf>]
 
-[6 <./FinalProject_S25_files/figure-latex/unnamed-chunk-6-1.pdf> <./FinalProject_S25_files/figure-latex/unnamed-chunk-7-1.pdf> <./FinalProject_S25_files/figure-latex/unnamed-chunk-7-2.pdf>] [7 <./FinalProject_S25_files/figure-latex/unnamed-chunk-7-3.pdf> <./FinalProject_S25_files/figure-latex/unnamed-chunk-7-4.pdf>] [8]
+[6 <./FinalProject_S25_files/figure-latex/unnamed-chunk-6-1.pdf> <./FinalProject_S25_files/figure-latex/unnamed-chunk-7-1.pdf> <./FinalProject_S25_files/figure-latex/unnamed-chunk-7-2.pdf>]
 
-[9]
+[7 <./FinalProject_S25_files/figure-latex/unnamed-chunk-7-3.pdf> <./FinalProject_S25_files/figure-latex/unnamed-chunk-7-4.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 457.
+(Font)              <10> on input line 278.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 457.
+(Font)              <7> on input line 278.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 457.
-<FinalProject_S25_files/figure-latex/unnamed-chunk-9-1.pdf, id=128, 469.755pt x 325.215pt>
-File: FinalProject_S25_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
-<use FinalProject_S25_files/figure-latex/unnamed-chunk-9-1.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-9-1.pdf  used on input line 477.
+(Font)              <5> on input line 278.
+<FinalProject_S25_files/figure-latex/unnamed-chunk-8-1.pdf, id=112, 469.755pt x 325.215pt>
+File: FinalProject_S25_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
+<use FinalProject_S25_files/figure-latex/unnamed-chunk-8-1.pdf>
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-8-1.pdf  used on input line 298.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<FinalProject_S25_files/figure-latex/unnamed-chunk-9-2.pdf, id=129, 469.755pt x 325.215pt>
-File: FinalProject_S25_files/figure-latex/unnamed-chunk-9-2.pdf Graphic file (type pdf)
-<use FinalProject_S25_files/figure-latex/unnamed-chunk-9-2.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-9-2.pdf  used on input line 478.
+<FinalProject_S25_files/figure-latex/unnamed-chunk-8-2.pdf, id=113, 469.755pt x 325.215pt>
+File: FinalProject_S25_files/figure-latex/unnamed-chunk-8-2.pdf Graphic file (type pdf)
+<use FinalProject_S25_files/figure-latex/unnamed-chunk-8-2.pdf>
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-8-2.pdf  used on input line 299.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 477--479
+Underfull \hbox (badness 10000) in paragraph at lines 298--300
 [][]
  []
 
 
 
-[10{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+[8{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc} <./FinalProject_S25_files/figure-latex/unnamed-chunk-8-1.pdf>]
+<FinalProject_S25_files/figure-latex/unnamed-chunk-9-1.pdf, id=133, 578.16pt x 505.89pt>
+File: FinalProject_S25_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use FinalProject_S25_files/figure-latex/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-9-1.pdf  used on input line 301.
+(pdftex.def)             Requested size: 469.75385pt x 411.0346pt.
 
-[11 <./FinalProject_S25_files/figure-latex/unnamed-chunk-9-1.pdf>]
-<FinalProject_S25_files/figure-latex/unnamed-chunk-10-1.pdf, id=154, 469.755pt x 325.215pt>
+
+[9 <./FinalProject_S25_files/figure-latex/unnamed-chunk-8-2.pdf>]
+
+[10 <./FinalProject_S25_files/figure-latex/unnamed-chunk-9-1.pdf>]
+<FinalProject_S25_files/figure-latex/unnamed-chunk-10-1.pdf, id=153, 469.755pt x 325.215pt>
 File: FinalProject_S25_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
 <use FinalProject_S25_files/figure-latex/unnamed-chunk-10-1.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-10-1.pdf  used on input line 480.
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-10-1.pdf  used on input line 346.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
 
-[12 <./FinalProject_S25_files/figure-latex/unnamed-chunk-9-2.pdf>]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 482.
+[11]
+
+[12 <./FinalProject_S25_files/figure-latex/unnamed-chunk-10-1.pdf>]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 382.
+(c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+<FinalProject_S25_files/figure-latex/unnamed-chunk-12-1.pdf, id=169, 505.89pt x 325.215pt>
+File: FinalProject_S25_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
+<use FinalProject_S25_files/figure-latex/unnamed-chunk-12-1.pdf>
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-12-1.pdf  used on input line 396.
+(pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
+<FinalProject_S25_files/figure-latex/unnamed-chunk-12-2.pdf, id=170, 505.89pt x 325.215pt>
+File: FinalProject_S25_files/figure-latex/unnamed-chunk-12-2.pdf Graphic file (type pdf)
+<use FinalProject_S25_files/figure-latex/unnamed-chunk-12-2.pdf>
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-12-2.pdf  used on input line 397.
+(pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
+<FinalProject_S25_files/figure-latex/unnamed-chunk-12-3.pdf, id=171, 505.89pt x 325.215pt>
+File: FinalProject_S25_files/figure-latex/unnamed-chunk-12-3.pdf Graphic file (type pdf)
+<use FinalProject_S25_files/figure-latex/unnamed-chunk-12-3.pdf>
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-12-3.pdf  used on input line 398.
+(pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
+
+
+[13{c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <./FinalProject_S25_files/figure-latex/unnamed-chunk-12-1.pdf>]
+
+[14 <./FinalProject_S25_files/figure-latex/unnamed-chunk-12-2.pdf> <./FinalProject_S25_files/figure-latex/unnamed-chunk-12-3.pdf>]
+
+[15]
+
+[16]
+<FinalProject_S25_files/figure-latex/unnamed-chunk-16-1.pdf, id=207, 433.62pt x 325.215pt>
+File: FinalProject_S25_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (type pdf)
+<use FinalProject_S25_files/figure-latex/unnamed-chunk-16-1.pdf>
+Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-16-1.pdf  used on input line 523.
+(pdftex.def)             Requested size: 433.63878pt x 325.22908pt.
+
+
+[17 <./FinalProject_S25_files/figure-latex/unnamed-chunk-16-1.pdf>]
+
+[18]
+
+[19]
+
+[20]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 683.
 (c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
-[13 <./FinalProject_S25_files/figure-latex/unnamed-chunk-10-1.pdf>]
-<FinalProject_S25_files/figure-latex/unnamed-chunk-11-1.pdf, id=176, 469.755pt x 325.215pt>
-File: FinalProject_S25_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
-<use FinalProject_S25_files/figure-latex/unnamed-chunk-11-1.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-11-1.pdf  used on input line 547.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-
-[14]
-
-[15 <./FinalProject_S25_files/figure-latex/unnamed-chunk-11-1.pdf>]
-<FinalProject_S25_files/figure-latex/unnamed-chunk-13-1.pdf, id=191, 469.755pt x 325.215pt>
-File: FinalProject_S25_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use FinalProject_S25_files/figure-latex/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 597.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<FinalProject_S25_files/figure-latex/unnamed-chunk-13-2.pdf, id=192, 469.755pt x 325.215pt>
-File: FinalProject_S25_files/figure-latex/unnamed-chunk-13-2.pdf Graphic file (type pdf)
-<use FinalProject_S25_files/figure-latex/unnamed-chunk-13-2.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-13-2.pdf  used on input line 598.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<FinalProject_S25_files/figure-latex/unnamed-chunk-13-3.pdf, id=193, 469.755pt x 325.215pt>
-File: FinalProject_S25_files/figure-latex/unnamed-chunk-13-3.pdf Graphic file (type pdf)
-<use FinalProject_S25_files/figure-latex/unnamed-chunk-13-3.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-13-3.pdf  used on input line 599.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 597--600
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 597--600
-[]
- []
-
-
-
-[16]
-
-[17 <./FinalProject_S25_files/figure-latex/unnamed-chunk-13-1.pdf>]
-
-[18 <./FinalProject_S25_files/figure-latex/unnamed-chunk-13-2.pdf>]
-
-[19 <./FinalProject_S25_files/figure-latex/unnamed-chunk-13-3.pdf>]
-
-[20]
-
 [21]
-<FinalProject_S25_files/figure-latex/unnamed-chunk-17-1.pdf, id=236, 469.755pt x 325.215pt>
-File: FinalProject_S25_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type pdf)
-<use FinalProject_S25_files/figure-latex/unnamed-chunk-17-1.pdf>
-Package pdftex.def Info: FinalProject_S25_files/figure-latex/unnamed-chunk-17-1.pdf  used on input line 829.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-
-[22 <./FinalProject_S25_files/figure-latex/unnamed-chunk-17-1.pdf>]
+[22]
 
 [23]
 
@@ -778,18 +763,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 13166 strings out of 475172
- 211525 string characters out of 5764330
- 617508 words of memory out of 5000000
- 35865 multiletter control sequences out of 15000+600000
+ 13172 strings out of 475172
+ 211622 string characters out of 5764330
+ 621645 words of memory out of 5000000
+ 35870 multiletter control sequences out of 15000+600000
  609938 words of font info for 79 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 89i,7n,93p,604b,591s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,7n,93p,604b,593s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on FinalProject_S25.pdf (30 pages, 5876744 bytes).
+Output written on FinalProject_S25.pdf (30 pages, 5880373 bytes).
 PDF statistics:
- 407 PDF objects out of 1000 (max. 8388607)
- 305 compressed objects within 4 object streams
- 53 named destinations out of 1000 (max. 500000)
- 182 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 411 PDF objects out of 1000 (max. 8388607)
+ 309 compressed objects within 4 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 190 words of extra memory for PDF output out of 10000 (max. 10000000)
 
