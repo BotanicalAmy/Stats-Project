@@ -597,10 +597,6 @@ mod4 <- glm(factor(Status) ~ Meal, family = binomial(link = "logit"), data = hot
   Using forward step analysis, the AIC values recommended using all the remaining variables, including LeadTime, HasRequests, Market, Month, AvgPrice, Parking, RoomType, StayLength, Meal and GroupSize. The AIC of this model was 30,674. 
 
   We used the output from an ANOVA table to eliminate variables one at a time, starting with GroupSize (the highest p value). The final model we selected used LeadTime, Market, Requests, Month, AvgPrice, and StayLength. While our AIC increased slightly to 31,109, we reduced the variable count from 10 to 6. Simplifying the model to six variables is far easier to utilize for improvements to Gold Mine Resorts marketing procedures, and only changed the AIC value by 1.4%. Additionally, our model had good variance and normality, in addition to fitting closely to the expected results (as indicated by the empirical logit plot).
-  
-**Cross Validation**
-
-  After running two cross validation tests, we observed the percent difference in AIC to be -.245% and 1.19%. This metric shows our model does not have any indicators for over fitting.
 
 
 ```{r, echo=FALSE}
@@ -677,8 +673,12 @@ model_fit <- plot_model_fit(new_model, bins = 10)
 plot(new_model, which = c(1, 2))  # Residuals vs Fitted and Normal Q-Q plot
 
 ```
-
 \pagebreak
+
+**Cross Validation**
+
+  After running two cross validation tests, we observed the percent difference in AIC to be -.245% and 1.19%. This metric shows our model does not have any indicators for over fitting.
+
 
 **Key Quantitative Predictors:***
 
@@ -714,6 +714,8 @@ $$odds \space ratio_{Market(Offline)} = e^{1.6324226} = 5.12$$
 Holding all other variables constant, when Gold Mine Resorts has an offline booking the predicted odds of not cancelling are approximately 5 times higher than an aviation booking (baseline). With a p-value of 8.80e-16, this segment is useful in predicting Status.
 
 $$odds \space ratio_{Market(Online)} = e^{-0.2199951} = 0.8$$ 
+
+\pagebreak
 
 Holding all other variables constant, when Gold Mine Resorts has an online booking the predicted odds of not cancelling decrease by a factor of 0.8 compared to an aviation booking (baseline). However, with a p-value of 0.27308, this segment is not statistically significant in predicting Status.
 

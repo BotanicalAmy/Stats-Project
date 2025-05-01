@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.23)  30 APR 2025 21:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.23)  30 APR 2025 22:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -718,17 +718,17 @@ Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-1.pdf, id=191, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 404.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 398.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-2.pdf, id=192, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-2.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-2.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-2.pdf  used on input line 405.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-2.pdf  used on input line 399.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-3.pdf, id=193, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-3.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-3.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-3.pdf  used on input line 406.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-13-3.pdf  used on input line 400.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 
 
@@ -742,7 +742,7 @@ Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-14-1.pdf, id=227, 433.62pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-14-1.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-14-1.pdf  used on input line 529.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-14-1.pdf  used on input line 530.
 (pdftex.def)             Requested size: 433.63878pt x 325.22908pt.
 
 
@@ -753,14 +753,14 @@ Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-
 [21]
 
 [22]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 707.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 708.
 (c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-1.pdf, id=259, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-1.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-1.pdf  used on input line 729.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-1.pdf  used on input line 730.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 
 
@@ -768,7 +768,7 @@ Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-2.pdf, id=268, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-2.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-2.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-2.pdf  used on input line 753.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-2.pdf  used on input line 754.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 
 
@@ -776,7 +776,7 @@ Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-3.pdf, id=278, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-3.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-3.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-3.pdf  used on input line 777.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-3.pdf  used on input line 778.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 
 
@@ -784,7 +784,7 @@ Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-4.pdf, id=289, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-4.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-4.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-4.pdf  used on input line 801.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-4.pdf  used on input line 802.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 
 
@@ -792,7 +792,7 @@ Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-5.pdf, id=300, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-5.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-5.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-5.pdf  used on input line 825.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-5.pdf  used on input line 826.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 
 
@@ -800,7 +800,7 @@ Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-6.pdf, id=310, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-6.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-6.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-6.pdf  used on input line 849.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-6.pdf  used on input line 850.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 
 
@@ -808,7 +808,7 @@ Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-7.pdf, id=320, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-7.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-7.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-7.pdf  used on input line 873.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-7.pdf  used on input line 874.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 
 
@@ -816,7 +816,7 @@ Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-8.pdf, id=330, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-8.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-8.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-8.pdf  used on input line 897.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-8.pdf  used on input line 898.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 
 
@@ -824,7 +824,7 @@ Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-
 <GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-9.pdf, id=340, 505.89pt x 325.215pt>
 File: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-9.pdf Graphic file (type pdf)
 <use GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-9.pdf>
-Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-9.pdf  used on input line 921.
+Package pdftex.def Info: GoldMine_FinalProject_files/figure-latex/unnamed-chunk-19-9.pdf  used on input line 922.
 (pdftex.def)             Requested size: 469.76265pt x 301.99028pt.
 
 
@@ -868,7 +868,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  89i,7n,93p,609b,593s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/amyfo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on GoldMine_FinalProject.pdf (42 pages, 6171688 bytes).
+Output written on GoldMine_FinalProject.pdf (42 pages, 6171768 bytes).
 PDF statistics:
  530 PDF objects out of 1000 (max. 8388607)
  395 compressed objects within 4 object streams
