@@ -420,26 +420,25 @@ plot(leadtime_model, which = 1)
 
 # Quantitative Model
 
+LeadTime has a a p-value of less than $2*10^{-16}$, we have strong evidence that LeadTime is a statistically significant predictor for cancellation rates.
+
 **Logit function for Status using LeadTime:**
+
 $$\widehat{log(\frac{\pi}{1-\pi})} = 1.8046260 - 0.0117484(LeadTime)$$
 
+Using the logit function above, for every 1 day increase in LeadTime, the predicted logit of cancellation rate decreases by 0.011748. 
+ 
+**Odds for Status using LeadTime:**
+
 $$odds(Status) = e^{1.8046260 - 0.0117484(LeadTime)} $$
-
-**Probability function for Status using LeadTime:**
-
-$$p(Status) = \widehat \pi = \frac{e^{1.8046260 - 0.0117484(LeadTime)}}{1-e^{1.8046260 - 0.0117484(LeadTime)}}$$
-The odds ratio for this model can be calculated as:
 
 $$odds \space ratio = e^{\widehat \beta_1} = e^{-0.0117484} = 0.988324$$ 
 
 Therefore, for every 1 day increase in LeadTime, the predicted odds of cancelling the hotel booking decreases by a factor of 0.988. To further Gold Mine Resorts understanding of these statistics, Visuals of the probabilities and odds of cancellation are included below.
 
-The predicted $\widehat{b}$ is statistically significant, this is because the hypothesis test bellow:
+**Probability function for Status using LeadTime:**
 
-$$H_0: \beta_1 = 0, H_a: \beta_1 \neq 0$$
-
-LeadTime has a a p-value of less than $2*10^{-16}$, we have strong evidence to reject the null hypothesis in favor of the alternative. Conclusively, LeadTime is useful predictor for predicting cancellation rates.
-
+$$p(Status) = \widehat \pi = \frac{e^{1.8046260 - 0.0117484(LeadTime)}}{1-e^{1.8046260 - 0.0117484(LeadTime)}}$$
 
 
 ```{r fig.width=8, fig.height=7, echo=FALSE}
@@ -518,45 +517,15 @@ text(reference_points, reference_odds,
 # Reset plotting parameters
 par(mfrow = c(1, 1))
 
-# Additional information: Compare probability and odds changes
-# reference_table <- data.frame(
-#   LeadTime = reference_points,
-#   Probability = round(reference_probs, 4),
-#   ProbabilityPercentage = paste0(round(reference_probs*100, 1), "%"),
-#   Odds = round(reference_odds, 4)
-# )
-
-# Print reference table
-# print(reference_table)
-
-# Calculate and display odds ratios for different intervals
-# base_odds <- cancellation_odds(0)
-# odds_ratios <- sapply(reference_points[-1], function(lt) {
-#   cancellation_odds(lt) / base_odds
-# })
-# 
-# cat("\nPercentage change in odds from Lead Time = 0:\n")
-# for (i in 1:length(odds_ratios)) {
-#   pct_change <- (odds_ratios[i] - 1) * 100
-#   cat(sprintf("Lead Time = %d days: %.1f%% change in odds\n", 
-#               reference_points[i+1], pct_change))
-# }
-
-# Calculate and display odds ratio for one-day change
-# one_day_odds_ratio <- exp(lead_time_coef)
-# cat(sprintf("\nOdds ratio for one-day increase in lead time: %.4f\n", one_day_odds_ratio))
-# cat(sprintf("This corresponds to a %.2f%% decrease in odds per day\n", 
-#             (1 - one_day_odds_ratio) * 100))
-
 ```
 
 \pagebreak
 
 ## 3.2 Objective 2
 
-Looking at the AIC for the categorical models, HasRequests was shown to be the best single categorical explanatory variable for predicting cancellations. This is within the expectations of our exploratory data analysis, as it was also followed by month and market.
+  Looking at the AIC for the categorical models, HasRequests was shown to be the best single categorical explanatory variable for predicting cancellations. This is within the expectations of our exploratory data analysis, as it was also followed by Month and Market.
 
-For our categorical analysis, we transformed Requests (a quantitative variable) into a categorical variable, HasRequests, that indicates whether or not a given booking made a nonzero number of special requests. As evidenced by the model output for HasRequests, we note that the p-value for the variable's coefficient is less than $2*10^{-16}$, meaning that HasRequests has a statistically significant effect on the cancellation rate. Using a confidence interval, we are 95% confident that the aforementioned coefficient lies between 1.05 and 1.14, meaning we are 95% certain that for bookings with special requests, the logarithmic likelihood of a cancellation will increase by a factor of between 1.05 and 1.14.
+  For our categorical analysis, we transformed Requests (a quantitative variable) into a categorical variable, HasRequests, that indicates whether or not a given booking made a nonzero number of special requests. As evidenced by the model output for HasRequests, we note that the p-value for the variable's coefficient is less than $2*10^{-16}$, meaning that HasRequests is statistically significant for predicting cancellation rate. Using a confidence interval, we are 95% certain that for bookings with special requests, the logarithmic likelihood of a cancellation will increase by a factor of between 1.05 and 1.14.
 
 
 **Logit function for Status using HasRequests:**
@@ -571,9 +540,7 @@ $$p(Status) = \widehat \pi = \frac{e^{0.27328 + 1.09756(HasRequests)}}{1-e^{0.27
 **odds ratio for Status using HasRequests:**
 $$odds \space ratio = e^{\widehat \beta_1} = e^{1.09756} = 2.996845$$ 
 
-HasRequests is a binary categorical variable. When HasRequests = 1 the predicted odds of not cancelling are approximately 3 times higher than when HasRequests = 0.
-
-$$H_0: \beta_1 = 0, H_a: \beta_1 \neq 0$$
+HasRequests is a binary categorical variable. When HasRequests = 1, the predicted odds of not cancelling are approximately 3 times higher than when HasRequests = 0.
 
 With a p-value < 2e^-16, we have strong evidence to reject the null hypothesis in favor of the alternative. HasRequests is useful for predicting hotel cancellations.
 
