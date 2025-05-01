@@ -542,7 +542,7 @@ $$\widehat{log(\frac{\pi}{1-\pi})} = 0.27328 + 1.09756(HasRequests)$$
 **Probability function for Status using HasRequests:**
 
 $$p(Status) = \widehat \pi = \frac{e^{0.27328 + 1.09756(HasRequests)}}{1-e^{0.27328 + 1.09756(HasRequests)}}$$
-**odds for Status using HasRequests:**
+**Odds for Status using HasRequests:**
 
 $$odds(Status) = e^{0.27328 + 1.09756(HasRequests)} $$
 
@@ -594,9 +594,9 @@ mod4 <- glm(factor(Status) ~ Meal, family = binomial(link = "logit"), data = hot
 
   When observing the ANOVA table, the HasChildren variable was not statistically significant. We replaced the HasChildren variable with the Children variable and observed a large p value for this created indicator column as well (greater than .2 in both instances). We additionally removed Year from the statistical model, since this historical data point is not useful for future predictions.
 
-  Using forward step analysis, the AIC values recommended using all the remaining variables, including LeadTime, HasRequests, Market, Month, AvgPrice, Parking, RoomType, StayLength, Meal and GroupSize. The AIC of this model was 30,674. 
+  Using forward step analysis, the AIC values recommended using all the remaining variables, including LeadTime, HasRequests, GroupSize, Market, Month, AvgPrice, Parking, RoomType, StayLength, and Meal. The AIC of this model was 30,674. 
 
-  We used the output from an ANOVA table to eliminate variables one at a time, starting with GroupSize (the highest p value). The final model we selected used LeadTime, Market, Requests, Month, AvgPrice, and StayLength. While our AIC increased slightly to 31,109, we reduced the variable count from 10 to 6. Simplifying the model to six variables is far easier to utilize for improvements to Gold Mine Resorts marketing procedures, and only changed the AIC value by 1.4%. Additionally, our model had good variance and normality, in addition to fitting closely to the expected results (as indicated by the empirical logit plot).
+  We used the output from an ANOVA table to eliminate variables one at a time, starting with GroupSize (the highest p value). The final model we selected used LeadTime, Market, HasRequests, Month, AvgPrice, and StayLength. While our AIC increased slightly to 31,109, we reduced the variable count from 10 to 6. Simplifying the model to six variables is far easier to utilize for improvements to Gold Mine Resorts marketing procedures, and only changed the AIC value by 1.4%. Additionally, our model had good variance and normality, in addition to fitting closely to the expected results (as indicated by the empirical logit plot).
 
 
 ```{r, echo=FALSE}
@@ -677,7 +677,7 @@ plot(new_model, which = c(1, 2))  # Residuals vs Fitted and Normal Q-Q plot
 
 **Cross Validation**
 
-  After running two cross validation tests, we observed the percent difference in AIC to be -.245% and 1.19%. This metric shows our model does not have any indicators for over fitting.
+  After running two cross validation tests, we observed the percent difference in AIC to be -.326% and .753%. This metric shows our model does not have any indicators for overfitting.
 
 
 **Key Quantitative Predictors:***
@@ -954,8 +954,8 @@ summary(mod5)
 
 ```{r, include=TRUE}
 
-#full model code
-full_model <- glm(factor(Status) ~ factor(Meal) + factor(Parking) + factor(RoomType) + LeadTime + factor(Market) + AvgPrice + HasRequests + factor(Month) + StayLength + GroupSize, family = binomial(link = "logit"), data=hotel_bookings)
+#full model discovery
+full_model <- glm(factor(Status) ~ factor(Meal) + factor(Parking) + factor(RoomType) + LeadTime + factor(Market) + AvgPrice + HasRequests + factor(Month) + StayLength + GroupSize + Adults + Children, family = binomial(link = "logit"), data=hotel_bookings)
 
 
 none <- glm(factor(Status) ~ 1 , family = binomial(link = "logit"), data=hotel_bookings)
@@ -986,10 +986,9 @@ train_indices <- sample(1:nrow(hotel_bookings), size = 0.5 * nrow(hotel_bookings
 train_data <- hotel_bookings[train_indices, ]
 test_data <- hotel_bookings[-train_indices, ]
 
-train_model <- glm(factor(Status) ~ LeadTime + HasRequests + factor(Market) + factor(Month) + 
-    AvgPrice + factor(Parking) + factor(RoomType) + StayLength + factor(Meal) + StayLength, 
-                  family = binomial(link = "logit"), 
+train_model <- glm(factor(Status) ~ LeadTime + factor(Market) +  HasRequests + factor(Month) + AvgPrice + StayLength, family = binomial(link = "logit"), 
                   data = train_data)
+
 summary(train_model)
 anova(train_model)
 
@@ -1017,10 +1016,9 @@ train_indices <- sample(1:nrow(hotel_bookings), size = 0.5 * nrow(hotel_bookings
 train_data <- hotel_bookings[train_indices, ]
 test_data <- hotel_bookings[-train_indices, ]
 
-train_model <- glm(factor(Status) ~ LeadTime + HasRequests + factor(Market) + factor(Month) + 
-    AvgPrice + factor(Parking) + factor(RoomType) + StayLength + factor(Meal) + StayLength, 
-                  family = binomial(link = "logit"), 
+train_model <- glm(factor(Status) ~ LeadTime + factor(Market) +  HasRequests + factor(Month) + AvgPrice + StayLength, family = binomial(link = "logit"), 
                   data = train_data)
+
 summary(train_model)
 anova(train_model)
 
