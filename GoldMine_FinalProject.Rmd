@@ -60,7 +60,7 @@ hotel_bookings$Online <- ifelse(hotel_bookings$Market == "Online", 1, 0)
 
 # 1. Project Description
 
-Gold Mine Resorts is looking to understand the predictors for guests who cancel their reservations.The industry average for cancellation rates is twenty percent; however Gold Mine Resorts experienced a 32.8% cancellation rate for reservations between 2015 and 2018. Cancelled reservations represent a total of $4.3 million dollars in lost revenue for this time frame.
+Gold Mine Resorts is looking to understand the predictors for guests who cancel their reservations. The industry average for cancellation rates is twenty percent; however Gold Mine Resorts experienced a 32.8% cancellation rate for reservations between 2015 and 2018. Cancelled reservations represent a total of $4.3 million dollars in lost revenue for this time frame.
 
 *Description of the dataset*
 
@@ -68,7 +68,7 @@ The dataset includes 36,285 rows of booking data, spanning the course of four ye
 
 Our team observed there was only one row of data for year 2015 and 2016. We additionally noticed there only 5 data points for meal plan 3. The variables: GroupSize, StayLength, HasChildren, HasRequests and Online were created from the existing dataset. GroupSize was an aggregation of count of adults and children, StayLength was an aggregation of Weekend and Weeknights. HasChildren, HasRequests and Online created binary, true/false (0 and 1) variables from the count of children, requests and instances where the market was online.
 
-The status column (cancelled verses not cancelled), is the response variable of interest in this analysis.
+The status column (cancelled versus not cancelled), is the response variable of interest in this analysis.
 
 *Goal of study*
 
@@ -289,7 +289,7 @@ gf_bar(~Market, fill=~Status, data = hotel_bookings) %>%
   )
 
 ```
-```{r fig.width=8, fig.height=6, echo=FALSE}
+```{r fig.width=8, fig.height=5.5, echo=FALSE}
 # abbreviated month names in chronological order
 month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", 
                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
@@ -391,12 +391,12 @@ gf_bar(~Online, fill=~Status, data = hotel_bookings) %>%
 
 ## 3.1 Objective 1
 
-  The metrics used to determine the best quantitative predictor were AIC and residual deviance. All of the individual models created from each variable were statistically significant, with most having a p-value less than 2*10^-16. However, the AIC and residual deviance for the generalized linear model predicting Status with LeadTime was significantly lower than the models for AvgPrice, StayLength, GroupSize, Children, Adults, Weeknights, Weekdays, and Requests, showing that LeadTime is the greatest individual quantitative predictor for Status. Additional the AIC for Groupsize was lower than both individual models for Children and Adults. In the same way, StayLength was a better indicator than Weekends or Weekdays.
+  The metrics used to determine the best quantitative predictor were AIC and residual deviance. All of the individual models created from each variable were statistically significant, with most having a p-value less than $2*10^{-16}$. However, the AIC and residual deviance for the generalized linear model predicting Status with LeadTime was significantly lower than the models for AvgPrice, StayLength, GroupSize, Children, Adults, Weeknights, Weekdays, and Requests, showing that LeadTime is the greatest individual quantitative predictor for Status. Additional the AIC for Groupsize was lower than both individual models for Children and Adults. In the same way, StayLength was a better indicator than Weekends or Weekdays.
 
   For the conditions of the model using LeadTime, there is slight concern about the equal variance condition. Due to slight flaring of the logit plot, we attempted a variety of transformations (square root, logarithmic, inverse), but this had almost no impact on the conditions and made the model unnecessarily complicated. Additionally there were issues of equal variance for all the quantitative variables. After this analysis, we decided that LeadTime is the best individual quantitative predictor for status.
 
 
-```{r, echo=FALSE}
+```{r fig.width=7, fig.height=4.5, echo=FALSE}
 
 # quantitative predictors
 price_model <- glm(factor(Status) ~ AvgPrice, family = binomial(link = "logit"), data = hotel_bookings)
@@ -440,7 +440,7 @@ $$odds(Status) = e^{1.8046260 - 0.0117484(LeadTime)} $$
 
 $$odds \space ratio = e^{\widehat \beta_1} = e^{-0.0117484} = 0.988324$$ 
 
-Therefore, for every 1 day increase in LeadTime, the predicted odds of cancelling the hotel booking decreases by a factor of 0.988. To further Gold Mine Resorts understanding of these statistics, Visuals of the probabilities and odds of cancellation are included below.
+Therefore, for every 1 day increase in LeadTime, the predicted odds of cancelling the hotel booking decreases by a factor of 0.988. To further Gold Mine Resorts's understanding of these statistics, Visuals of the probabilities and odds of cancellation are included below.
 
 **Probability function for Status using LeadTime:**
 
@@ -533,7 +533,7 @@ par(mfrow = c(1, 1))
 
   For our categorical analysis, we transformed Requests (a quantitative variable) into a categorical variable, HasRequests, that indicates whether or not a given booking made a nonzero number of special requests. As evidenced by the model output for HasRequests, we note that the p-value for the variable's coefficient is less than $2*10^{-16}$, meaning that HasRequests is statistically significant for predicting cancellation rate. Using a confidence interval, we are 95% certain that for bookings with special requests, the logarithmic likelihood of a cancellation will increase by a factor of between 1.05 and 1.14.
   
-  The conditions for our model are met because we have many instances for guests making requests and guests not making requests, as indicated by our "Has Requests" table in the appendix.
+  The conditions for our model are met because we have many instances for guests making requests and guests not making requests, as indicated by table 9 (Has Requests) in the appendix.
 
 **Logit function for Status using HasRequests:**
 
@@ -551,7 +551,7 @@ $$odds \space ratio = e^{\widehat \beta_1} = e^{1.09756} = 2.996845$$
 
 HasRequests is a binary categorical variable. When HasRequests = 1 (at least special request was made), the predicted odds of not cancelling are approximately 3 times higher than when HasRequests = 0 (no special requests were made).
 
-```{r, echo=FALSE}
+```{r fig.width=6, fig.height=4, echo=FALSE}
 
 modr <- glm(factor(Status) ~ HasRequests, family = binomial(link = "logit"), data = hotel_bookings)
 # summary(modr)
@@ -604,15 +604,11 @@ mod4 <- glm(factor(Status) ~ Meal, family = binomial(link = "logit"), data = hot
 
 
 ```{r, echo=FALSE}
-# included again in the appendix, left here for ease of reference or modification
+# included again in the appendix, left here for use in the empirical logit plot
 new_model <- glm(factor(Status) ~ LeadTime + factor(Market) + HasRequests + factor(Month) + AvgPrice + StayLength, family = binomial(link = "logit"), data=hotel_bookings)
 
 
 anova_table <- Anova(new_model, test = "LR")
-# print(anova_table)
-
-# Get the AIC
-# AIC(new_model)
 
 ```
 
@@ -878,7 +874,7 @@ print_pretty_kable(requests_table2, "Requests")
 ```
 **Quantitative Variable Models**
 
-```{r, include=TRUE}
+```{r fig.width=7, fig.height=4.5, include=TRUE}
 # quantitative code
 hotel_bookings$Status_binary <- ifelse(hotel_bookings$Status == "Canceled", 1, 0)
 price_model <- glm(factor(Status) ~ AvgPrice, family = binomial(link = "logit"), data = hotel_bookings)
